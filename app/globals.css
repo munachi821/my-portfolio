@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-google-sans: var(--font-google-sans);
+  /* CSS HEX */
+  --color-black: #000000ff;
+  --color-gunmetal: #3c3c3cff;
+  --color-sky-surge: #5db7deff;
+  --color-soft-linen: #f1e9dbff;
+  --color-khaki-beige: #a39b8bff;
+}
+
+body {
+  background: var(--background);
+  font-family: var(--font-google-sans), Arial, Helvetica, sans-serif;
+}
