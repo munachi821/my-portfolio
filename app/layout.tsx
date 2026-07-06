@@ -1,11 +1,18 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { Fraunces } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar";
 
 const googleSans = localFont({
   src: "./fonts/GoogleSans.ttf",
   variable: "--font-google-sans",
+});
+
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  variable: "--font-fraunces",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -20,7 +27,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${googleSans.variable} h-full antialiased`}>
+    <html
+      lang="en"
+      className={`${googleSans.variable} ${fraunces.variable} h-full antialiased`}
+    >
       <body className="min-h-full flex flex-col max-w-5xl mx-auto bg-soft-linen relative">
         <Navbar />
         {children}

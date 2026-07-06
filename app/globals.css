@@ -1,13 +1,26 @@
 @import "tailwindcss";
+@import "lenis/dist/lenis.css";
 
 @theme {
   --font-google-sans: var(--font-google-sans);
+  --font-fraunces: var(--font-fraunces);
   /* CSS HEX */
   --color-black: #000000ff;
   --color-gunmetal: #3c3c3cff;
   --color-sky-surge: #5db7deff;
   --color-soft-linen: #f1e9dbff;
   --color-khaki-beige: #a39b8bff;
+
+  --animate-infinite-scroll: infinite-scroll 25s linear infinite;
+
+  @keyframes infinite-scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
 }
 
 /* Base styles */

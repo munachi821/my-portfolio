@@ -1,3 +1,15 @@
 export { default as GithubIcon } from "./github.svg";
 export { default as TiktokIcon } from "./tiktok.svg";
 export { default as XIcon } from "./x.svg";
+export { default as CssIcon } from "./css.svg";
+export { default as Html5Icon } from "./html5.svg";
+export { default as JavascriptIcon } from "./javascript.svg";
+export { default as NextJsIcon } from "./nextdotjs.svg";
+export { default as ReactIcon } from "./react.svg";
+export { default as TailwindCssIcon } from "./tailwindcss.svg";
+export { default as FigmaIcon } from "./figma.svg";
+export { default as NetlifyIcon } from "./netlify.svg";
+export { default as RailwayIcon } from "./railway.svg";
+export { default as SupabaseIcon } from "./supabase.svg";
+export { default as TypescriptIcon } from "./typescript.svg";
+export { default as VercelIcon } from "./vercel.svg";

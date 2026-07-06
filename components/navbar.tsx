@@ -3,7 +3,7 @@ import { Home, Briefcase, Mailbox, DocText } from "reicon-react";
 import { LiquidGlassCard } from "./uilayouts/liquid-glass";
 import { GithubIcon } from "./svg";
 import { useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "motion/react";
 
 const NavItem = ({
   icon: Icon,
@@ -52,28 +52,50 @@ const NavItem = ({
 };
 
 const Navbar = () => {
+  const { scrollY } = useScroll();
+  const [hidden, setHidden] = useState(false);
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const previous = scrollY.getPrevious();
+    if (previous !== undefined) {
+      if (latest > previous && latest > 150) {
+        setHidden(true);
+      } else {
+        setHidden(false);
+      }
+    }
+  });
+
   return (
-    <header className="fixed z-50 bottom-8 flex items-center justify-center w-full pointer-events-none">
+    <motion.header
+      variants={{
+        visible: { y: 0, opacity: 1 },
+        hidden: { y: 100, opacity: 0 },
+      }}
+      animate={hidden ? "hidden" : "visible"}
+      transition={{ duration: 0.35, ease: "easeInOut" }}
+      className="fixed z-50 bottom-8 inset-x-0 flex items-center justify-center pointer-events-none"
+    >
       <div className="pointer-events-auto">
         <LiquidGlassCard
-        glowIntensity="none"
-        shadowIntensity="none"
-        blurIntensity="sm"
-        draggable={false}
-      >
-        <nav className="relative z-50 px-4 py-2 rounded-full border border-khaki-beige/50">
-          <ul className="flex items-center gap-2">
-            <NavItem icon={Home} label="Home" isActive={true} />
-            <NavItem icon={Briefcase} label="Projects" />
-            <NavItem icon={GithubIcon} label="Github" isCustomIcon={true} />
-            <NavItem icon={Mailbox} label="Contact" />
-            <div className="h-8 w-px bg-khaki-beige/50"></div>
-            <NavItem icon={DocText} label="Resume" />
-          </ul>
-        </nav>
-      </LiquidGlassCard>
+          glowIntensity="none"
+          shadowIntensity="none"
+          blurIntensity="sm"
+          draggable={false}
+        >
+          <nav className="relative z-50 px-4 py-2 rounded-full border border-khaki-beige/50">
+            <ul className="flex items-center gap-2">
+              <NavItem icon={Home} label="Home" isActive={true} />
+              <NavItem icon={Briefcase} label="Projects" />
+              <NavItem icon={GithubIcon} label="Github" isCustomIcon={true} />
+              <NavItem icon={Mailbox} label="Contact" />
+              <div className="h-8 w-px bg-khaki-beige/50"></div>
+              <NavItem icon={DocText} label="Resume" />
+            </ul>
+          </nav>
+        </LiquidGlassCard>
       </div>
-    </header>
+    </motion.header>
   );
 };
 
