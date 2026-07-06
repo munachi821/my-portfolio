@@ -53,14 +53,15 @@ const NavItem = ({
 
 const Navbar = () => {
   return (
-    <header className="fixed z-50 mt-5">
-      <LiquidGlassCard
+    <header className="fixed z-50 bottom-8 flex items-center justify-center w-full pointer-events-none">
+      <div className="pointer-events-auto">
+        <LiquidGlassCard
         glowIntensity="none"
         shadowIntensity="none"
         blurIntensity="sm"
         draggable={false}
       >
-        <nav className="relative z-50 w-fit px-4 py-2 rounded-full border border-khaki-beige/50">
+        <nav className="relative z-50 px-4 py-2 rounded-full border border-khaki-beige/50">
           <ul className="flex items-center gap-2">
             <NavItem icon={Home} label="Home" isActive={true} />
             <NavItem icon={Briefcase} label="Projects" />
@@ -71,6 +72,7 @@ const Navbar = () => {
           </ul>
         </nav>
       </LiquidGlassCard>
+      </div>
     </header>
   );
 };
