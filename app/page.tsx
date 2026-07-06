@@ -7,7 +7,7 @@ export default function Home() {
           <div className="border border-red w-60 h-60 rounded-4xl"></div>
 
           <div className="mt-10 font-google_sans">
-            <h1 className="text-3xl font-bold">
+            <h1 className="text-[100px] font-bold">
               Hello, I&apos;m Munachi Onyebuchi
             </h1>
             <p>

@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${googleSans.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col max-w-5xl mx-auto">
+      <body className="min-h-full flex flex-col max-w-5xl mx-auto bg-soft-linen">
         <Navbar />
         {children}
       </body>

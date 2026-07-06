@@ -1,8 +1,6 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
   --font-google-sans: var(--font-google-sans);
   /* CSS HEX */
   --color-black: #000000ff;
@@ -12,7 +10,30 @@
   --color-khaki-beige: #a39b8bff;
 }
 
+/* Base styles */
 body {
-  background: var(--background);
-  font-family: var(--font-google-sans), Arial, Helvetica, sans-serif;
+  background-color: var(--color-soft-linen);
+  color: var(--color-gunmetal);
+  font-family: var(--font-google-sans), system-ui, sans-serif;
+}
+
+/* Headlines — pure black for impact */
+h1 {
+  color: var(--color-black);
+}
+
+/* Links — sky surge accent on hover */
+a {
+  color: var(--color-gunmetal);
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--color-sky-surge);
+}
+
+/* Text selection — branded highlight */
+::selection {
+  background-color: var(--color-sky-surge);
+  color: white;
 }
