@@ -1,6 +1,11 @@
 @import "tailwindcss";
 @import "lenis/dist/lenis.css";
 
+/* Base styles */
+* {
+  cursor: none !important;
+}
+
 @theme {
   --font-google-sans: var(--font-google-sans);
   --font-fraunces: var(--font-fraunces);
@@ -23,7 +28,6 @@
   }
 }
 
-/* Base styles */
 body {
   background-color: var(--color-soft-linen);
   color: var(--color-gunmetal);

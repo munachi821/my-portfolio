@@ -31,8 +31,6 @@ const techStack = [
   { icon: RailwayIcon, name: "Railway" },
   { icon: TypescriptIcon, name: "TypeScript" },
   { icon: GithubIcon, name: "Github" },
-  { icon: XIcon, name: "X" },
-  { icon: TiktokIcon, name: "TikTok" },
 ];
 
 function TechStack() {

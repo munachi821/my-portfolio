@@ -15,6 +15,8 @@ const fraunces = Fraunces({
   display: "swap",
 });
 
+import CustomCursor from "@/components/uilayouts/custom-cursor";
+
 export const metadata: Metadata = {
   title: "Munachi Onyebuchi | Frontend Developer",
   description:
@@ -31,7 +33,8 @@ export default function RootLayout({
       lang="en"
       className={`${googleSans.variable} ${fraunces.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col max-w-5xl mx-auto bg-soft-linen relative">
+      <body className="min-h-full flex flex-col max-w-5xl mx-auto bg-soft-linen relative cursor-none">
+        <CustomCursor />
         <Navbar />
         {children}
       </body>
