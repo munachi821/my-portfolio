@@ -8,6 +8,7 @@ import Link from "next/link";
 import { motion } from "motion/react";
 import ReactLenis from "lenis/react";
 import TechStack from "@/components/uilayouts/techstack";
+import { Lens } from "@/components/uilayouts/lens";
 import campusPadi_logo from "@/assets/campuspadi_logo.png";
 import campuspadi_screenshot from "@/assets/campuspadi-dashboard-screenshot.png";
 import agrotrack_screenshot from "@/assets/agrotrack-landingpage-screenshot.png";
@@ -236,11 +237,13 @@ export default function Home() {
                   </div>
 
                   <div className="p-1 bg-soft-linen/10">
-                    <Image
-                      src={project.image}
-                      alt={`${project.title} screenshot`}
-                      className="w-full h-auto object-cover rounded-lg border border-khaki-beige/10"
-                    />
+                    <Lens zoomFactor={1.4} lensSize={150}>
+                      <Image
+                        src={project.image}
+                        alt={`${project.title} screenshot`}
+                        className="w-full h-auto object-cover rounded-lg border border-khaki-beige/10"
+                      />
+                    </Lens>
                   </div>
                 </div>
 
