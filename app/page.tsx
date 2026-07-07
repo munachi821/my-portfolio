@@ -2,7 +2,7 @@
 import Image from "next/image";
 import myPhoto from "@/assets/3ASUd1xl_400x400.jpg";
 import { WordRotate } from "@/components/uilayouts/word-rotate";
-import { ArrowDown, ArrowUpRight2 } from "reicon-react";
+import { ArrowDown, ArrowRight } from "reicon-react";
 import { RippleButton } from "@/components/uilayouts/ripple-button";
 import Link from "next/link";
 import { motion } from "motion/react";
@@ -275,22 +275,56 @@ export default function Home() {
                           <Icon key={i} className="size-6" />
                         ))}
                       </div>
-                      <Link
-                        href={project.link}
-                        className="inline-flex items-center gap-2 text-[13px] font-bold tracking-[0.15em] uppercase text-gunmetal group w-fit pb-1 border-b border-gunmetal/30 hover:border-sky-surge transition-colors duration-300"
-                      >
-                        <span className="group-hover:text-sky-surge transition-colors duration-300">
-                          View Project
-                        </span>
-                        <span className="block transform transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-sky-surge text-lg">
-                          <ArrowUpRight2 size={22} />
-                        </span>
-                      </Link>
+                      <motion.div whileHover="hover" initial="initial">
+                        <Link
+                          href={project.link}
+                          className="group inline-flex items-center gap-2 text-[13px] font-bold tracking-[0.15em] uppercase text-gunmetal w-fit pb-1 border-b border-gunmetal/30 hover:border-sky-surge hover:text-sky-surge transition-colors duration-300"
+                        >
+                          <span>View Project</span>
+
+                          {/* Scrolling Arrow Container */}
+                          <div className="relative overflow-hidden w-5 h-5 flex items-center justify-center">
+                            {/* Original arrow shoots right */}
+                            <motion.div
+                              variants={{
+                                initial: { x: "0%" },
+                                hover: { x: "150%" },
+                              }}
+                              transition={{ duration: 0.3, ease: "anticipate" }}
+                              className="absolute flex items-center justify-center"
+                            >
+                              <ArrowRight size={20} />
+                            </motion.div>
+
+                            {/* New arrow slides in from left */}
+                            <motion.div
+                              variants={{
+                                initial: { x: "-150%" },
+                                hover: { x: "0%" },
+                              }}
+                              transition={{
+                                duration: 0.3,
+                                ease: "easeOut",
+                                delay: 0.1,
+                              }}
+                              className="absolute flex items-center justify-center"
+                            >
+                              <ArrowRight size={20} />
+                            </motion.div>
+                          </div>
+                        </Link>
+                      </motion.div>
                     </div>
                   </div>
                 </div>
               </div>
             ))}
+          </div>
+
+          <div className="mt-24 lg:mt-32 flex justify-center">
+            <Link href="#">
+              <RippleButton text="View All Projects" />
+            </Link>
           </div>
         </section>
       </main>

@@ -3,7 +3,7 @@ import { ArrowRightUp } from "reicon-react";
 import React, { useRef, useState } from "react";
 import { motion, useMotionValue, useSpring } from "motion/react";
 
-export const RippleButton = () => {
+export const RippleButton = ({ text = "Work with me" }: { text?: string }) => {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -55,7 +55,7 @@ export const RippleButton = () => {
 
       {/* Button Content */}
       <span className="relative z-10 font-medium group-hover:text-black transition-colors duration-300 pointer-events-none">
-        Work with me
+        {text}
       </span>
 
       {/* Animated Arrow Icon */}
