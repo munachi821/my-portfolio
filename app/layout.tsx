@@ -29,11 +29,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${googleSans.variable} ${fraunces.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col max-w-5xl mx-auto bg-soft-linen relative cursor-none">
+    <html lang="en" className="scroll-smooth">
+      <body
+        className={`${googleSans.variable} ${fraunces.variable} antialiased min-h-full flex flex-col max-w-5xl mx-auto bg-soft-linen text-gunmetal relative overflow-x-hidden selection:bg-sky-surge/30 cursor-none`}
+      >
         <CustomCursor />
         <Navbar />
         {children}
