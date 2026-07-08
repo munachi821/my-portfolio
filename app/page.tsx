@@ -25,6 +25,7 @@ import {
   NextJsIcon,
   SupabaseIcon,
 } from "@/components/svg";
+import VariableFontCursorProximity from "@/components/uilayouts/text-weight";
 
 export default function Home() {
   const my_works = [
@@ -216,7 +217,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <section className="pb-40">
+        <section className="pb-30">
           <div className="mb-24">
             <h2 className="font-fraunces text-4xl font-bold tracking-tight text-gunmetal">
               Things I&apos;ve shipped
@@ -328,6 +329,18 @@ export default function Home() {
             <Link href="#">
               <RippleButton text="View All Projects" />
             </Link>
+          </div>
+        </section>
+        <section className="pb-30 flex justify-center items-center overflow-hidden">
+          <div className="w-full overflow-hidden flex justify-center text-center">
+            <VariableFontCursorProximity
+              label="MUNACHI"
+              fontSize={140}
+              fromWeight={300}
+              toWeight={900}
+              color="#222B38"
+              strength={50}
+            />
           </div>
         </section>
       </main>
