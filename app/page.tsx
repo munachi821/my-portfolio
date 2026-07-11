@@ -260,7 +260,7 @@ export default function Home() {
             </motion.div>
           </motion.div>
         </section>
-        <section className="mt-15 md:my-40">
+        <section className="md:my-40">
           <motion.div
             initial="hidden"
             whileInView="visible"
