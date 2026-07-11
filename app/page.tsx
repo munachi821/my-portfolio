@@ -150,8 +150,8 @@ export default function Home() {
   ];
   return (
     <ReactLenis root>
-      <main className="pt-20 sm:pt-10 md:pt-15">
-        <section id="home">
+      <main>
+        <section id="home" className="pt-20 md:pt-15 h-screen md:h-fit">
           <motion.div
             initial="hidden"
             animate="visible"
@@ -213,19 +213,15 @@ export default function Home() {
                   transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
                 },
               }}
-              className="mt-8 font-google_sans flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-4"
+              className="mt-8 font-google_sans flex flex-row items-center gap-4 md:gap-6"
             >
               <Link href={"Mailto:munaonye4@gmail.com"}>
                 <RippleButton />
               </Link>
-              <motion.div
-                whileHover="hover"
-                initial="initial"
-                className="sm:ml-4"
-              >
+              <motion.div whileHover="hover" initial="initial">
                 <Link
                   href={"#projects"}
-                  className="ml-2 sm:ml-0 group flex items-center gap-2 text-lg sm:text-xl font-medium hover:text-gunmetal! transition-colors duration-300"
+                  className="group flex items-center gap-2 text-lg sm:text-xl font-medium hover:text-gunmetal! transition-colors duration-300"
                 >
                   <span>View my work</span>
 
@@ -264,7 +260,7 @@ export default function Home() {
             </motion.div>
           </motion.div>
         </section>
-        <section className="py-30 md:py-40">
+        <section className="mt-15 md:my-40">
           <motion.div
             initial="hidden"
             whileInView="visible"
