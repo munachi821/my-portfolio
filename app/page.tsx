@@ -151,7 +151,10 @@ export default function Home() {
   return (
     <ReactLenis root>
       <main>
-        <section id="home" className="pt-20 md:pt-15 h-screen md:h-fit">
+        <section
+          id="home"
+          className="pt-20 md:pt-15 min-h-[75vh] md:min-h-0 md:h-fit md:pb-20"
+        >
           <motion.div
             initial="hidden"
             animate="visible"
@@ -161,6 +164,7 @@ export default function Home() {
             }}
           >
             {/* my image */}
+            {/* Uncomment when photo is ready */}
             <motion.div
               variants={{
                 hidden: { opacity: 0, y: 30 },
@@ -170,7 +174,7 @@ export default function Home() {
                   transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
                 },
               }}
-              className="border border-red w-40 h-40 md:w-60 md:h-60 rounded-4xl overflow-hidden bg-black"
+              className="w-40 h-40 md:w-60 md:h-60 rounded-4xl overflow-hidden bg-black"
             >
               {/* <Image src={myPhoto} alt="Munachi" /> */}
             </motion.div>
@@ -260,7 +264,7 @@ export default function Home() {
             </motion.div>
           </motion.div>
         </section>
-        <section className="md:my-40">
+        <section className="my-20 md:my-40">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -411,7 +415,7 @@ export default function Home() {
             <div className="w-10 h-0.5 bg-sky-surge/60 mt-4 md:mt-6 rounded-full" />
           </motion.div>
 
-          <div className="flex flex-col gap-20 md:gap-32">
+          <div className="flex flex-col gap-24 md:gap-32">
             {my_works.map((project, idx) => (
               <div key={idx} className="flex flex-col gap-8 md:gap-12">
                 {/* Project Image (Stacked Top) */}
@@ -562,7 +566,7 @@ export default function Home() {
             hidden: { opacity: 0 },
             visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
           }}
-          className="my-10 md:my-20 scroll-mt-24 bg-gunmetal rounded-3xl overflow-hidden p-6 md:p-10 flex flex-col justify-between shadow-2xl"
+          className="my-10 md:my-20 mb-24 md:mb-28 scroll-mt-24 bg-gunmetal rounded-3xl overflow-hidden p-6 md:p-10 flex flex-col justify-between shadow-2xl"
         >
           <div>
             {/* Eyebrow */}
