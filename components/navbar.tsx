@@ -128,7 +128,9 @@ const Navbar = () => {
         const contactRect = contactEl.getBoundingClientRect();
         // The navbar center is over the contact section
         const navCenter = navRect.top + navRect.height / 2;
-        setIsOverDark(navCenter >= contactRect.top && navCenter <= contactRect.bottom);
+        setIsOverDark(
+          navCenter >= contactRect.top && navCenter <= contactRect.bottom,
+        );
       } else {
         setIsOverDark(false);
       }

@@ -264,7 +264,7 @@ export default function Home() {
             </motion.div>
           </motion.div>
         </section>
-        <section className="py-20 md:py-40">
+        <section className="py-30 md:py-40">
           <motion.div
             initial="hidden"
             whileInView="visible"
