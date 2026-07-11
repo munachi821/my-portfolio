@@ -150,7 +150,7 @@ export default function Home() {
   ];
   return (
     <ReactLenis root>
-      <main className="pt-10 md:pt-15">
+      <main className="pt-20 sm:pt-10 md:pt-15">
         <section id="home">
           <motion.div
             initial="hidden"
