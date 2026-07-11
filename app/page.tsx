@@ -264,7 +264,7 @@ export default function Home() {
             </motion.div>
           </motion.div>
         </section>
-        <section className="py-20 md:py-40">
+        <section className="py-30 md:py-40">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -549,12 +549,11 @@ export default function Home() {
           <div className="w-full overflow-hidden flex justify-center text-center">
             <VariableFontCursorProximity
               label="MUNACHI"
-              fontSize={60}
+              fontSize="clamp(60px, 12vw, 140px)"
               fromWeight={300}
               toWeight={900}
               color="#222B38"
               strength={50}
-              style={{ fontSize: "clamp(60px, 12vw, 140px)" }}
             />
           </div>
         </section>

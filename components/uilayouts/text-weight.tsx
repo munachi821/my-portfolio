@@ -299,7 +299,7 @@ type Props = {
   fromWeight: number;
   toWeight: number;
   strength: number;
-  fontSize: number;
+  fontSize: number | string;
   color: string;
   transition?: any;
   style?: React.CSSProperties;
