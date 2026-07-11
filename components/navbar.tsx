@@ -2,7 +2,7 @@
 import { Home, Briefcase, Mailbox, DocText } from "reicon-react";
 import { LiquidGlassCard } from "./uilayouts/liquid-glass";
 import { GithubIcon } from "./svg";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   motion,
   AnimatePresence,
@@ -24,19 +24,29 @@ const NavItem = ({
   const showLabel = isActive || isHovered;
 
   const textColor = isDark ? "text-soft-linen!" : "text-gunmetal!";
-  const hoverTextColor = isDark ? "hover:text-soft-linen!" : "hover:text-gunmetal!";
+  const hoverTextColor = isDark
+    ? "hover:text-soft-linen!"
+    : "hover:text-gunmetal!";
 
   const content = (
     <div
       className={`flex items-center cursor-pointer group px-2 md:px-3 py-1.5 md:py-2 rounded-full transition-colors duration-300 ${textColor} ${hoverTextColor} ${
-        isActive ? (isDark ? "bg-white/10" : "bg-white/40") : (isDark ? "hover:bg-white/10" : "hover:bg-white/40")
+        isActive
+          ? isDark
+            ? "bg-white/10"
+            : "bg-white/40"
+          : isDark
+            ? "hover:bg-white/10"
+            : "hover:bg-white/40"
       }`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="flex items-center justify-center shrink-0">
         {isCustomIcon ? (
-          <Icon className={`w-5 h-5 md:w-6 md:h-6 ${textColor} transition-colors duration-300`} />
+          <Icon
+            className={`w-5 h-5 md:w-6 md:h-6 ${textColor} transition-colors duration-300`}
+          />
         ) : (
           <Icon
             weight="Filled"
@@ -55,7 +65,9 @@ const NavItem = ({
             transition={{ type: "spring", stiffness: 300, damping: 25 }}
             className="overflow-hidden whitespace-nowrap"
           >
-            <span className={`${textColor} font-medium font-google_sans text-sm`}>
+            <span
+              className={`${textColor} font-medium font-google_sans text-sm`}
+            >
               {label}
             </span>
           </motion.div>
@@ -78,7 +90,11 @@ const NavItem = ({
         </a>
       );
     }
-    return <Link href={href} className={hoverTextColor}>{content}</Link>;
+    return (
+      <Link href={href} className={hoverTextColor}>
+        {content}
+      </Link>
+    );
   }
 
   return content;
@@ -88,6 +104,8 @@ const Navbar = () => {
   const { scrollY } = useScroll();
   const [hidden, setHidden] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const [isOverDark, setIsOverDark] = useState(false);
+  const headerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -95,14 +113,25 @@ const Navbar = () => {
       let currentSection = "home";
 
       sections.forEach((section) => {
-        const sectionTop = (section as HTMLElement).offsetTop;
-        // Subtract offset to trigger activation before fully scrolling
-        if (window.scrollY >= sectionTop - 300) {
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= window.innerHeight - 80) {
           currentSection = section.getAttribute("id") || "home";
         }
       });
 
       setActiveSection(currentSection);
+
+      // Direct overlap check: is the navbar physically over the dark contact section?
+      const contactEl = document.getElementById("contact");
+      if (contactEl && headerRef.current) {
+        const navRect = headerRef.current.getBoundingClientRect();
+        const contactRect = contactEl.getBoundingClientRect();
+        // The navbar center is over the contact section
+        const navCenter = navRect.top + navRect.height / 2;
+        setIsOverDark(navCenter >= contactRect.top && navCenter <= contactRect.bottom);
+      } else {
+        setIsOverDark(false);
+      }
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -124,6 +153,7 @@ const Navbar = () => {
 
   return (
     <motion.header
+      ref={headerRef}
       variants={{
         visible: { y: 0, opacity: 1 },
         hidden: { y: 100, opacity: 0 },
@@ -146,36 +176,38 @@ const Navbar = () => {
                 label="Home"
                 isActive={activeSection === "home"}
                 href="#home"
-                isDark={activeSection === "contact"}
+                isDark={isOverDark}
               />
               <NavItem
                 icon={Briefcase}
                 label="Projects"
                 isActive={activeSection === "projects"}
                 href="#projects"
-                isDark={activeSection === "contact"}
+                isDark={isOverDark}
               />
               <NavItem
                 icon={GithubIcon}
                 label="Github"
                 isCustomIcon={true}
                 href="https://github.com/munachi821"
-                isDark={activeSection === "contact"}
+                isDark={isOverDark}
               />
               <NavItem
                 icon={Mailbox}
                 label="Contact"
                 isActive={activeSection === "contact"}
                 href="#contact"
-                isDark={activeSection === "contact"}
+                isDark={isOverDark}
               />
-              <div className={`h-8 w-px transition-colors duration-300 ${activeSection === "contact" ? "bg-soft-linen/20" : "bg-khaki-beige/50"}`}></div>
+              <div
+                className={`h-8 w-px transition-colors duration-300 ${isOverDark ? "bg-soft-linen/20" : "bg-khaki-beige/50"}`}
+              ></div>
               <NavItem
                 icon={DocText}
                 label="Resume"
                 href="/Munachi_Onyebuchi_Bright_Resume.docx"
                 download="Munachi_Onyebuchi_Resume.docx"
-                isDark={activeSection === "contact"}
+                isDark={isOverDark}
               />
             </ul>
           </nav>

@@ -549,12 +549,11 @@ export default function Home() {
           <div className="w-full overflow-hidden flex justify-center text-center">
             <VariableFontCursorProximity
               label="MUNACHI"
-              fontSize={60}
+              fontSize="clamp(60px, 12vw, 140px)"
               fromWeight={300}
               toWeight={900}
               color="#222B38"
               strength={50}
-              style={{ fontSize: "clamp(60px, 12vw, 140px)" }}
             />
           </div>
         </section>
