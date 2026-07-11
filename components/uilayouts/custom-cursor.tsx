@@ -7,8 +7,18 @@ import cursorImg from "@/assets/cursor.png";
 export default function CustomCursor() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isVisible, setIsVisible] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
 
   useEffect(() => {
+    // Detect if the device has no fine pointer (touch-only)
+    const mq = window.matchMedia("(pointer: fine)");
+    if (!mq.matches) {
+      setIsTouchDevice(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (isTouchDevice) return;
     const updateMousePosition = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
       if (!isVisible) setIsVisible(true);
@@ -16,9 +26,9 @@ export default function CustomCursor() {
 
     window.addEventListener("mousemove", updateMousePosition);
     return () => window.removeEventListener("mousemove", updateMousePosition);
-  }, [isVisible]);
+  }, [isVisible, isTouchDevice]);
 
-  if (!isVisible) return null;
+  if (isTouchDevice || !isVisible) return null;
 
   return (
     <motion.div

@@ -2,8 +2,10 @@
 @import "lenis/dist/lenis.css";
 
 /* Base styles */
-* {
-  cursor: none !important;
+@media (pointer: fine) {
+  * {
+    cursor: none !important;
+  }
 }
 
 @theme {
@@ -53,4 +55,10 @@ a:hover {
 ::selection {
   background-color: var(--color-sky-surge);
   color: white;
+}
+
+/* Force white text for social icons where CSS is overridden */
+.border-sky-surge a svg {
+  stroke: white !important;
+  fill: white !important;
 }

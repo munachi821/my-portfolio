@@ -13,3 +13,4 @@ export { default as RailwayIcon } from "./railway.svg";
 export { default as SupabaseIcon } from "./supabase.svg";
 export { default as TypescriptIcon } from "./typescript.svg";
 export { default as VercelIcon } from "./vercel.svg";
+export { default as LinkedinIcon } from "./linkedin.svg";

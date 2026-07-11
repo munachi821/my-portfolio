@@ -35,7 +35,7 @@ const techStack = [
 
 function TechStack() {
   return (
-    <div className="w-60 py-4 overflow-hidden mask-[linear-gradient(to_right,transparent_0,black_64px,black_calc(100%-64px),transparent_100%)]">
+    <div className="w-full md:w-60 py-4 overflow-hidden mask-[linear-gradient(to_right,transparent_0,black_64px,black_calc(100%-64px),transparent_100%)]">
       <div className="flex items-center w-max animate-infinite-scroll hover:[animation-play-state:paused]">
         {[...techStack, ...techStack].map((tech, i) => (
           <motion.div

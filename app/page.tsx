@@ -5,10 +5,10 @@ import { WordRotate } from "@/components/uilayouts/word-rotate";
 import { ArrowDown, ArrowRight } from "reicon-react";
 import { RippleButton } from "@/components/uilayouts/ripple-button";
 import Link from "next/link";
-import { motion } from "motion/react";
+import { motion, useScroll, useTransform } from "motion/react";
+import { useRef, useState } from "react";
 import ReactLenis from "lenis/react";
 import TechStack from "@/components/uilayouts/techstack";
-import { Lens } from "@/components/uilayouts/lens";
 import campusPadi_logo from "@/assets/campuspadi_logo.png";
 import campuspadi_screenshot from "@/assets/campuspadi-dashboard-screenshot.png";
 import agrotrack_screenshot from "@/assets/agrotrack-landingpage-screenshot.png";
@@ -24,8 +24,77 @@ import {
   TypescriptIcon,
   NextJsIcon,
   SupabaseIcon,
+  GithubIcon,
+  TiktokIcon,
+  XIcon,
+  LinkedinIcon,
 } from "@/components/svg";
 import VariableFontCursorProximity from "@/components/uilayouts/text-weight";
+
+function CopyEmailButton() {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText("munaonye4@gmail.com");
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error("Failed to copy text: ", err);
+    }
+  };
+
+  return (
+    <motion.button
+      onClick={handleCopy}
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
+      className="relative flex items-center gap-2 md:gap-3 px-5 md:px-8 py-3 md:py-4 bg-soft-linen text-gunmetal font-bold font-google_sans text-[11px] md:text-[13px] tracking-[0.15em] uppercase rounded-full overflow-hidden group shadow-lg"
+    >
+      <span className="relative z-10 flex items-center gap-3 transition-all duration-300">
+        {copied ? (
+          <>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="text-sky-surge"
+            >
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            Email Copied!
+          </>
+        ) : (
+          <>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            Copy Email
+          </>
+        )}
+      </span>
+      {/* Sleek hover fill */}
+      <div className="absolute inset-0 bg-sky-surge/20 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out" />
+    </motion.button>
+  );
+}
 
 export default function Home() {
   const my_works = [
@@ -81,16 +150,43 @@ export default function Home() {
   ];
   return (
     <ReactLenis root>
-      <main className="pt-15">
-        <section>
-          <div>
+      <main className="pt-10 md:pt-15">
+        <section id="home">
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={{
+              hidden: { opacity: 0 },
+              visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
+            }}
+          >
             {/* my image */}
-            <div className="border border-red w-60 h-60 rounded-4xl overflow-hidden bg-black">
+            <motion.div
+              variants={{
+                hidden: { opacity: 0, y: 30 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+                },
+              }}
+              className="border border-red w-40 h-40 md:w-60 md:h-60 rounded-4xl overflow-hidden bg-black"
+            >
               {/* <Image src={myPhoto} alt="Munachi" /> */}
-            </div>
+            </motion.div>
 
-            <div className="mt-10 font-google_sans">
-              <h1 className="text-4xl font-bold">
+            <motion.div
+              variants={{
+                hidden: { opacity: 0, y: 30 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+                },
+              }}
+              className="mt-10 font-google_sans"
+            >
+              <h1 className="text-3xl md:text-4xl font-bold">
                 <span className="flex items-end">
                   <WordRotate
                     words={["Hello", "Kedu", "Ẹ n lẹ", "Bonjour", "Hola"]}
@@ -102,18 +198,34 @@ export default function Home() {
               </h1>
 
               {/* Subtitle */}
-              <p className="text-lg text-khaki-beige mt-3 max-w-md">
+              <p className="text-base md:text-lg text-khaki-beige mt-3 max-w-md">
                 I build fast, clean interfaces for SaaS and fintech products —
                 crafted with care, shipped with confidence.
               </p>
-            </div>
+            </motion.div>
 
-            <div className="mt-8 font-google_sans flex items-center gap-4">
-              <RippleButton />
-              <motion.div whileHover="hover" initial="initial" className="ml-4">
+            <motion.div
+              variants={{
+                hidden: { opacity: 0, y: 30 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+                },
+              }}
+              className="mt-8 font-google_sans flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-4"
+            >
+              <Link href={"Mailto:munaonye4@gmail.com"}>
+                <RippleButton />
+              </Link>
+              <motion.div
+                whileHover="hover"
+                initial="initial"
+                className="sm:ml-4"
+              >
                 <Link
-                  href={"#"}
-                  className="group flex items-center gap-2 text-xl font-medium  hover:text-gunmetal! transition-colors duration-300"
+                  href={"#projects"}
+                  className="ml-2 sm:ml-0 group flex items-center gap-2 text-lg sm:text-xl font-medium hover:text-gunmetal! transition-colors duration-300"
                 >
                   <span>View my work</span>
 
@@ -149,25 +261,53 @@ export default function Home() {
                   </div>
                 </Link>
               </motion.div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </section>
-        <section className="py-40">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
+        <section className="py-20 md:py-40">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={{
+              hidden: { opacity: 0 },
+              visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
+            }}
+            className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-8"
+          >
             {/* Left Column: Sticky Anchor */}
-            <div className="md:col-span-4">
-              <div className="sticky top-32">
-                <h2 className="font-fraunces text-4xl font-bold tracking-tight text-gunmetal">
+            <motion.div
+              variants={{
+                hidden: { opacity: 0, y: 30 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+                },
+              }}
+              className="md:col-span-4"
+            >
+              <div className="md:sticky md:top-32">
+                <h2 className="font-fraunces text-3xl md:text-4xl font-bold tracking-tight text-gunmetal">
                   About Me
                 </h2>
-                <div className="w-10 h-0.5 bg-sky-surge/60 mt-6 rounded-full" />
+                <div className="w-10 h-0.5 bg-sky-surge/60 mt-4 md:mt-6 rounded-full" />
               </div>
-            </div>
+            </motion.div>
 
             {/* Right Column: Content */}
             <div className="md:col-span-8 flex flex-col">
-              <div className="max-w-2xl flex flex-col gap-8 text-lg text-gunmetal/80 font-google_sans leading-[1.8]">
-                <p>
+              <div className="max-w-2xl flex flex-col gap-6 md:gap-8 text-base md:text-lg text-gunmetal/80 font-google_sans leading-[1.8]">
+                <motion.p
+                  variants={{
+                    hidden: { opacity: 0, y: 30 },
+                    visible: {
+                      opacity: 1,
+                      y: 0,
+                      transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+                    },
+                  }}
+                >
                   Co-founder of{" "}
                   <span className="inline-flex items-center gap-1.5 ml-1 align-middle text-gunmetal font-medium">
                     <Image
@@ -179,57 +319,120 @@ export default function Home() {
                     CampusPadi
                   </span>
                   , a platform helping students manage fees and study better.
-                </p>
+                </motion.p>
 
-                <p>
+                <motion.p
+                  variants={{
+                    hidden: { opacity: 0, y: 30 },
+                    visible: {
+                      opacity: 1,
+                      y: 0,
+                      transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+                    },
+                  }}
+                >
                   I&apos;m{" "}
                   <span className="text-gunmetal font-medium">
                     Munachi Onyebuchi
                   </span>
                   , a frontend developer with 2+ years of experience, studying
                   Computer Science at ESUT, based in Enugu.
-                </p>
+                </motion.p>
 
-                <p>
+                <motion.p
+                  variants={{
+                    hidden: { opacity: 0, y: 30 },
+                    visible: {
+                      opacity: 1,
+                      y: 0,
+                      transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+                    },
+                  }}
+                >
                   I have a low tolerance for bad UX — a slow page, a confusing
                   flow, a button that doesn&apos;t respond right — and that
                   impatience is exactly why I care so much about the details
                   most people skip: hover states, spacing, load times, the small
                   stuff that separates &quot;it works&quot; from &quot;it feels
                   considered.&quot;
-                </p>
+                </motion.p>
 
-                <p>
+                <motion.p
+                  variants={{
+                    hidden: { opacity: 0, y: 30 },
+                    visible: {
+                      opacity: 1,
+                      y: 0,
+                      transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+                    },
+                  }}
+                >
                   Outside of client work, you&apos;ll usually find me in the
                   middle of a hackathon, arguing about a color palette, or
                   rebuilding something I already finished because I found a
                   better way to do it.
-                </p>
+                </motion.p>
               </div>
 
               {/* Marquee Footer */}
-              <div className="mt-16 pt-12 border-t border-khaki-beige/30">
+              <motion.div
+                variants={{
+                  hidden: { opacity: 0, y: 30 },
+                  visible: {
+                    opacity: 1,
+                    y: 0,
+                    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+                  },
+                }}
+                className="mt-10 md:mt-16 pt-8 md:pt-12 border-t border-khaki-beige/30"
+              >
                 <p className="text-[13px] font-bold text-khaki-beige mb-6 tracking-[0.2em] uppercase">
                   The Toolkit
                 </p>
                 <TechStack />
-              </div>
+              </motion.div>
             </div>
-          </div>
+          </motion.div>
         </section>
-        <section className="pb-30">
-          <div className="mb-24">
-            <h2 className="font-fraunces text-4xl font-bold tracking-tight text-gunmetal">
+        <section id="projects" className="mb-20 md:mb-30 scroll-mt-24">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={{
+              hidden: { opacity: 0, y: 30 },
+              visible: {
+                opacity: 1,
+                y: 0,
+                transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+              },
+            }}
+            className="mb-16 md:mb-24"
+          >
+            <h2 className="font-fraunces text-3xl md:text-4xl font-bold tracking-tight text-gunmetal">
               Things I&apos;ve shipped
             </h2>
-            <div className="w-10 h-0.5 bg-sky-surge/60 mt-6 rounded-full" />
-          </div>
+            <div className="w-10 h-0.5 bg-sky-surge/60 mt-4 md:mt-6 rounded-full" />
+          </motion.div>
 
-          <div className="flex flex-col gap-32">
+          <div className="flex flex-col gap-20 md:gap-32">
             {my_works.map((project, idx) => (
-              <div key={idx} className="flex flex-col gap-12">
+              <div key={idx} className="flex flex-col gap-8 md:gap-12">
                 {/* Project Image (Stacked Top) */}
-                <div className="relative rounded-xl overflow-hidden border border-khaki-beige/40 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.05)] bg-white/50 backdrop-blur-sm">
+                <motion.div
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.2 }}
+                  variants={{
+                    hidden: { opacity: 0, y: 30 },
+                    visible: {
+                      opacity: 1,
+                      y: 0,
+                      transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+                    },
+                  }}
+                  className="relative rounded-xl overflow-hidden border border-khaki-beige/40 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.05)] bg-white/50 backdrop-blur-sm"
+                >
                   {/* Minimalist Browser Chrome */}
                   <div className="flex items-center gap-2 px-4 py-4 border-b border-khaki-beige/20 bg-soft-linen/30">
                     <div className="w-2.5 h-2.5 rounded-full bg-gunmetal/15" />
@@ -238,18 +441,29 @@ export default function Home() {
                   </div>
 
                   <div className="p-1 bg-soft-linen/10">
-                    <Lens zoomFactor={1.4} lensSize={150}>
-                      <Image
-                        src={project.image}
-                        alt={`${project.title} screenshot`}
-                        className="w-full h-auto object-cover rounded-lg border border-khaki-beige/10"
-                      />
-                    </Lens>
+                    <Image
+                      src={project.image}
+                      alt={`${project.title} screenshot`}
+                      className="w-full h-auto object-cover rounded-lg border border-khaki-beige/10"
+                    />
                   </div>
-                </div>
+                </motion.div>
 
                 {/* Project Details (Stacked Bottom, Split Columns) */}
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-16 items-start px-2">
+                <motion.div
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.2 }}
+                  variants={{
+                    hidden: { opacity: 0, y: 20 },
+                    visible: {
+                      opacity: 1,
+                      y: 0,
+                      transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+                    },
+                  }}
+                  className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-16 items-start px-2"
+                >
                   <div className="md:col-span-5 lg:col-span-5 shrink-0">
                     <p className="text-[12px] font-bold text-sky-surge tracking-[0.2em] uppercase mb-4">
                       {project.meta}
@@ -262,14 +476,14 @@ export default function Home() {
                           className="h-10 lg:h-12 w-auto object-contain drop-shadow-sm shrink-0"
                         />
                       )}
-                      <h3 className="text-4xl lg:text-[2.75rem] leading-tight font-bold font-fraunces text-gunmetal truncate">
+                      <h3 className="text-3xl md:text-4xl lg:text-[2.75rem] leading-tight font-bold font-fraunces text-gunmetal truncate">
                         {project.title}
                       </h3>
                     </div>
                   </div>
 
                   <div className="md:col-span-7 lg:col-span-7 flex flex-col font-google_sans pt-1 min-w-0">
-                    <p className="text-lg text-gunmetal/80 leading-[1.8] mb-8 max-w-2xl">
+                    <p className="text-base md:text-lg text-gunmetal/80 leading-[1.8] mb-6 md:mb-8 max-w-2xl">
                       {project.description}
                     </p>
 
@@ -320,29 +534,172 @@ export default function Home() {
                       </motion.div>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               </div>
             ))}
           </div>
 
-          <div className="mt-24 lg:mt-32 flex justify-center">
+          <div className="mt-16 md:mt-24 lg:mt-32 flex justify-center">
             <Link href="#">
               <RippleButton text="View All Projects" />
             </Link>
           </div>
         </section>
-        <section className="pb-30 flex justify-center items-center overflow-hidden">
+        <section className="mb-20 md:mb-30 flex justify-center items-center overflow-hidden">
           <div className="w-full overflow-hidden flex justify-center text-center">
             <VariableFontCursorProximity
               label="MUNACHI"
-              fontSize={140}
+              fontSize={60}
               fromWeight={300}
               toWeight={900}
               color="#222B38"
               strength={50}
+              style={{ fontSize: "clamp(60px, 12vw, 140px)" }}
             />
           </div>
         </section>
+        <motion.section
+          id="contact"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={{
+            hidden: { opacity: 0 },
+            visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
+          }}
+          className="my-10 md:my-20 scroll-mt-24 bg-gunmetal rounded-3xl overflow-hidden p-6 md:p-10 flex flex-col justify-between shadow-2xl"
+        >
+          <div>
+            {/* Eyebrow */}
+            <motion.p
+              variants={{
+                hidden: { opacity: 0, y: 30 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+                },
+              }}
+              className="text-xs md:text-[13px] font-bold text-khaki-beige tracking-[0.2em] uppercase"
+            >
+              LET&apos;S TALK
+            </motion.p>
+
+            {/* Heading */}
+            <motion.h2
+              variants={{
+                hidden: { opacity: 0, y: 30 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+                },
+              }}
+              className="mt-4 md:mt-6 font-fraunces text-3xl md:text-5xl font-bold tracking-tight text-soft-linen"
+            >
+              Let&apos;s build something.
+            </motion.h2>
+            <motion.div
+              variants={{
+                hidden: { opacity: 0, scaleX: 0 },
+                visible: {
+                  opacity: 1,
+                  scaleX: 1,
+                  transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+                },
+              }}
+              className="w-10 h-0.5 bg-sky-surge mt-4 md:mt-6 rounded-full origin-left"
+            />
+
+            {/* Body */}
+            <motion.p
+              variants={{
+                hidden: { opacity: 0, y: 30 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+                },
+              }}
+              className="mt-6 md:mt-8 text-base md:text-lg text-soft-linen/80 font-google_sans leading-[1.8] max-w-lg"
+            >
+              I&apos;m currently open to frontend work — SaaS, fintech, edutech,
+              or anything that needs real attention to detail.{" "}
+              <br className="hidden md:block" />
+              If that&apos;s you, reach out.
+            </motion.p>
+
+            {/* Button */}
+            <motion.div
+              variants={{
+                hidden: { opacity: 0, y: 30 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+                },
+              }}
+              className="mt-12 w-fit"
+            >
+              <CopyEmailButton />
+            </motion.div>
+          </div>
+
+          {/* Footer / Divider */}
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, y: 30 },
+              visible: {
+                opacity: 1,
+                y: 0,
+                transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+              },
+            }}
+            className="mt-16 md:mt-24 pt-6 md:pt-8 border-t border-khaki-beige/20 flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left"
+          >
+            <div className="text-soft-linen/50 text-xs md:text-sm font-google_sans">
+              © {new Date().getFullYear()} Munachi Onyebuchi.
+            </div>
+            <div className="flex items-center gap-6 text-white! font-google_sans text-sm font-medium">
+              <Link
+                href="https://ng.linkedin.com/in/munachi-onyebuchi-90b6a12a8"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white! hover:text-sky-surge/80! flex items-center justify-center"
+                aria-label="LinkedIn"
+              >
+                <LinkedinIcon className="size-5 fill-current" />
+              </Link>
+              <Link
+                href="https://x.com/dev_munachi"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white! hover:text-sky-surge/80! flex items-center justify-center"
+                aria-label="X (Twitter)"
+              >
+                <XIcon className="size-5 fill-current" />
+              </Link>
+              <Link
+                href="https://github.com/munachi821"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white! hover:text-sky-surge/80! flex items-center justify-center"
+                aria-label="GitHub"
+              >
+                <GithubIcon className="size-5 fill-current" />
+              </Link>
+              <Link
+                href="https://www.tiktok.com/@dev_muna"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white! hover:text-sky-surge/80! flex items-center justify-center"
+                aria-label="TikTok"
+              >
+                <TiktokIcon className="size-5 fill-current" />
+              </Link>
+            </div>
+          </motion.div>
+        </motion.section>
       </main>
     </ReactLenis>
   );

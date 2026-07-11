@@ -34,7 +34,7 @@ export const RippleButton = ({ text = "Work with me" }: { text?: string }) => {
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.95 }}
       transition={{ type: "spring", stiffness: 400, damping: 20 }}
-      className="relative overflow-hidden px-6 py-3 bg-black text-white rounded-full flex items-center gap-3 text-xl cursor-pointer group hover:shadow-[0_0_20px_rgba(93,183,222,0.4)] transition-shadow duration-300"
+      className="relative overflow-hidden px-4 md:px-6 py-2.5 md:py-3 bg-black text-white rounded-full flex items-center gap-2 md:gap-3 text-base md:text-xl cursor-pointer group hover:shadow-[0_0_20px_rgba(93,183,222,0.4)] transition-shadow duration-300"
     >
       {/* Expanding Circular Ripple using Framer Motion */}
       <motion.span
