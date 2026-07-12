@@ -106,7 +106,7 @@ export default function Home() {
       image: campuspadi_screenshot,
       logo: campusPadi_logo,
       icons: [ReactIcon, TailwindCssIcon, TypescriptIcon],
-      link: "#",
+      link: "https://campuspadi.com",
     },
     {
       title: "Agrotrack",
@@ -116,7 +116,7 @@ export default function Home() {
       image: agrotrack_screenshot,
       logo: agrotrack_logo,
       icons: [NextJsIcon, TailwindCssIcon, TypescriptIcon],
-      link: "#",
+      link: "https://agrotrack-app.web.app/",
     },
     {
       title: "BusierDesk",
@@ -126,7 +126,7 @@ export default function Home() {
       image: busierdesk_screenshot,
       logo: busierdesk_logo,
       icons: [NextJsIcon, TailwindCssIcon],
-      link: "#",
+      link: "https://busier-desk-kjo5.vercel.app/",
     },
     {
       title: "Table-Tap",
@@ -145,7 +145,7 @@ export default function Home() {
       image: unsaid_screenshot,
       logo: unsaid_logo,
       icons: [NextJsIcon, SupabaseIcon, TailwindCssIcon],
-      link: "#",
+      link: "https://the-unsaid.vercel.app/",
     },
   ];
   return (
@@ -496,6 +496,8 @@ export default function Home() {
                       <motion.div whileHover="hover" initial="initial">
                         <Link
                           href={project.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
                           className="group inline-flex items-center gap-2 text-[13px] font-bold tracking-[0.15em] uppercase text-gunmetal w-fit pb-1 border-b border-gunmetal/30 hover:border-sky-surge hover:text-sky-surge transition-colors duration-300"
                         >
                           <span>View Project</span>

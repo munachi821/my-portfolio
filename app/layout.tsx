@@ -33,7 +33,7 @@ export default function RootLayout({
       <body
         className={`${googleSans.variable} ${fraunces.variable} antialiased min-h-full flex flex-col max-w-5xl mx-auto px-5 md:px-8 lg:px-0 bg-soft-linen text-gunmetal relative overflow-x-hidden selection:bg-sky-surge/30 cursor-none`}
       >
-        <div className="hidden md:block">
+        <div className="block">
           <CustomCursor />
         </div>
         <Navbar />
