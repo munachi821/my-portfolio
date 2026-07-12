@@ -1,7 +1,6 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // @ts-ignore
   allowedDevOrigins: ["10.119.31.83"],
   turbopack: {
     rules: {

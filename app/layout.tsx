@@ -18,9 +18,53 @@ const fraunces = Fraunces({
 import CustomCursor from "@/components/uilayouts/custom-cursor";
 
 export const metadata: Metadata = {
-  title: "Munachi Onyebuchi | Frontend Developer",
+  title: {
+    default: "Munachi Onyebuchi | Frontend Developer",
+    template: "%s — Munachi Onyebuchi",
+  },
   description:
-    "Frontend Developer | Building modern and scalable web applications",
+    "Frontend developer specializing in React, Next.js, and TypeScript. Building fast, polished interfaces for SaaS and fintech products.",
+  keywords: [
+    "frontend developer",
+    "React",
+    "Next.js",
+    "TypeScript",
+    "Tailwind CSS",
+    "portfolio",
+    "web developer",
+    "SaaS",
+    "fintech",
+    "Nigeria",
+    "Enugu",
+  ],
+  authors: [{ name: "Munachi Onyebuchi" }],
+  creator: "Munachi Onyebuchi",
+  openGraph: {
+    title: "Munachi Onyebuchi | Frontend Developer",
+    description:
+      "I build fast, clean interfaces for SaaS and fintech products — crafted with care, shipped with confidence.",
+    // url: "https://your-domain.com",
+    siteName: "Munachi Onyebuchi",
+    type: "website",
+    locale: "en_US",
+    // images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Munachi Onyebuchi — Frontend Developer" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Munachi Onyebuchi | Frontend Developer",
+    description:
+      "I build fast, clean interfaces for SaaS and fintech products — crafted with care, shipped with confidence.",
+    creator: "@dev_munachi",
+    // images: ["/og-image.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
+  },
 };
 
 export default function RootLayout({

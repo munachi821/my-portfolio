@@ -209,7 +209,7 @@ export default function VariableFontCursorProximity(props: Props) {
         ...style,
       }}
     >
-      <style>{INTER_VARIABLE_FONT_FACE}</style>
+      {/* Font face removed — using native Fraunces variable font */}
       {words.length === 0 ? null : (
         <span style={innerSpanStyle}>
           <span style={srOnlyStyle}>{label}</span>
