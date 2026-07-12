@@ -24,7 +24,7 @@ export default function NotFound() {
         </p>
         <Link
           href="/"
-          className="group mt-4 inline-flex items-center gap-2 px-6 py-3 bg-gunmetal text-soft-linen rounded-full font-google_sans font-medium text-sm hover:bg-sky-surge transition-colors duration-300"
+          className="group mt-4 inline-flex items-center gap-2 px-6 py-3 bg-gunmetal! text-soft-linen! rounded-full font-google_sans font-medium text-sm hover:bg-gunmetal/80! transition-colors duration-300"
         >
           <ArrowLeft
             size={18}
