@@ -104,6 +104,7 @@ const NavItem = ({
 const Navbar = () => {
   const { scrollY } = useScroll();
   const [hidden, setHidden] = useState(false);
+  const [isHoveredNav, setIsHoveredNav] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [isOverDark, setIsOverDark] = useState(false);
   const headerRef = useRef<HTMLDivElement>(null);
@@ -143,16 +144,32 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    const previous = scrollY.getPrevious();
-    if (previous !== undefined) {
-      if (latest > previous && latest > 150) {
-        setHidden(true);
-      } else {
-        setHidden(false);
+  useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+
+    const startTimer = () => {
+      clearTimeout(timeoutId);
+      if (!isHoveredNav) {
+        timeoutId = setTimeout(() => {
+          setHidden(true);
+        }, 5000);
       }
-    }
-  });
+    };
+
+    const handleScrollTimer = () => {
+      setHidden(false);
+      startTimer();
+    };
+
+    window.addEventListener("scroll", handleScrollTimer);
+    
+    startTimer();
+
+    return () => {
+      window.removeEventListener("scroll", handleScrollTimer);
+      clearTimeout(timeoutId);
+    };
+  }, [isHoveredNav]);
 
   return (
     <motion.header
@@ -165,7 +182,11 @@ const Navbar = () => {
       transition={{ duration: 0.35, ease: "easeInOut" }}
       className="fixed z-50 bottom-8 inset-x-0 flex items-center justify-center pointer-events-none"
     >
-      <div className="pointer-events-auto">
+      <div 
+        className="pointer-events-auto"
+        onMouseEnter={() => setIsHoveredNav(true)}
+        onMouseLeave={() => setIsHoveredNav(false)}
+      >
         <LiquidGlassCard
           glowIntensity="none"
           shadowIntensity="none"

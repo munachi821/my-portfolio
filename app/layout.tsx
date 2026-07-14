@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     siteName: "Munachi Onyebuchi",
     type: "website",
     locale: "en_US",
-    // images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Munachi Onyebuchi — Frontend Developer" }],
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Munachi Onyebuchi — Frontend Developer" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     description:
       "I build fast, clean interfaces for SaaS and fintech products — crafted with care, shipped with confidence.",
     creator: "@dev_munachi",
-    // images: ["/og-image.png"],
+    images: ["/og-image.png"],
   },
   robots: {
     index: true,
