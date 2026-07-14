@@ -11,7 +11,7 @@ import campusPadi_logo from "@/assets/campuspadi_logo.png";
 import { projects } from "@/lib/projects";
 import ContactSection from "@/components/contact-section";
 import VariableFontCursorProximity from "@/components/uilayouts/text-weight";
-import myPhoto from "@/assets/3ASUd1xl_400x400.jpg";
+import myPhoto from "@/assets/myphoto.webp";
 
 export default function Home() {
   const my_works = projects;
@@ -43,7 +43,7 @@ export default function Home() {
               }}
               className="w-40 h-40 md:w-60 md:h-60 rounded-4xl overflow-hidden bg-black"
             >
-              <Image src={myPhoto} alt="Munachi" />
+              <Image src={myPhoto} alt="Munachi" loading="eager" />
             </motion.div>
 
             <motion.div
