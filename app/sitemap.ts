@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 
 // TODO: Update the base URL once your domain is finalized
-const BASE_URL = "https://munachi.dev";
+const BASE_URL = "https://munachi-xi.vercel.app";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [

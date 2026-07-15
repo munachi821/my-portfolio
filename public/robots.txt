@@ -3,4 +3,4 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://munachi.dev/sitemap.xml
+Sitemap: https://munachi-xi.vercel.app/sitemap.xml
