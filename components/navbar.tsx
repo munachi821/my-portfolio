@@ -162,7 +162,7 @@ const Navbar = () => {
     };
 
     window.addEventListener("scroll", handleScrollTimer);
-    
+
     startTimer();
 
     return () => {
@@ -182,7 +182,7 @@ const Navbar = () => {
       transition={{ duration: 0.35, ease: "easeInOut" }}
       className="fixed z-50 bottom-8 inset-x-0 flex items-center justify-center pointer-events-none"
     >
-      <div 
+      <div
         className="pointer-events-auto"
         onMouseEnter={() => setIsHoveredNav(true)}
         onMouseLeave={() => setIsHoveredNav(false)}
@@ -229,8 +229,8 @@ const Navbar = () => {
               <NavItem
                 icon={DocText}
                 label="Resume"
-                href="/Munachi_Onyebuchi_Bright_Resume.docx"
-                download="Munachi_Onyebuchi_Resume.docx"
+                href="/Munachi_Onyebuchi_Bright_Resume.pdf"
+                download="Munachi_Onyebuchi_Resume.pdf"
                 isDark={isOverDark}
               />
             </ul>
