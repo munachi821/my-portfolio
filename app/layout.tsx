@@ -18,6 +18,7 @@ const fraunces = Fraunces({
 import CustomCursor from "@/components/uilayouts/custom-cursor";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://munachi-xi.vercel.app"),
   title: {
     default: "Munachi Onyebuchi | Frontend Developer",
     template: "%s — Munachi Onyebuchi",
