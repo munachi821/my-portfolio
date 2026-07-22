@@ -18,7 +18,7 @@ const fraunces = Fraunces({
 import CustomCursor from "@/components/uilayouts/custom-cursor";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://munachi-xi.vercel.app"),
+  metadataBase: new URL("https://munachi.cv"),
   title: {
     default: "Munachi Onyebuchi | Frontend Developer",
     template: "%s — Munachi Onyebuchi",
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     title: "Munachi Onyebuchi | Frontend Developer",
     description:
       "I build fast, clean interfaces for SaaS and fintech products — crafted with care, shipped with confidence.",
-    url: "https://munachi-xi.vercel.app/",
+    url: "https://munachi.cv/",
     siteName: "Munachi Onyebuchi",
     type: "website",
     locale: "en_US",
@@ -110,7 +110,7 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "Munachi Onyebuchi",
-    url: "https://munachi-xi.vercel.app/",
+    url: "https://munachi.cv/",
   };
 
   return (
