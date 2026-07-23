@@ -20,30 +20,41 @@ import CustomCursor from "@/components/uilayouts/custom-cursor";
 export const metadata: Metadata = {
   metadataBase: new URL("https://munachi.cv"),
   title: {
-    default: "Munachi Onyebuchi | Frontend Developer",
+    default: "Munachi Onyebuchi | Frontend Developer — React, Next.js, TypeScript",
     template: "%s — Munachi Onyebuchi",
   },
   description:
-    "Frontend developer specializing in React, Next.js, and TypeScript. Building fast, polished interfaces for SaaS and fintech products.",
+    "Munachi Onyebuchi is a self-taught frontend developer from Enugu, Nigeria, specializing in React, Next.js, and TypeScript. Building fast, polished interfaces for SaaS and fintech products. Co-founder of CampusPadi.",
   keywords: [
+    "Munachi Onyebuchi",
+    "Munachi",
+    "munachi.cv",
     "frontend developer",
-    "React",
-    "Next.js",
-    "TypeScript",
+    "self-taught developer",
+    "React developer",
+    "Next.js developer",
+    "TypeScript developer",
     "Tailwind CSS",
+    "frontend developer Nigeria",
+    "frontend developer Enugu",
+    "web developer Nigeria",
+    "self-taught frontend developer Nigeria",
+    "SaaS developer",
+    "fintech developer",
+    "CampusPadi",
     "portfolio",
-    "web developer",
-    "SaaS",
-    "fintech",
-    "Nigeria",
-    "Enugu",
+    "freelance frontend developer",
   ],
-  authors: [{ name: "Munachi Onyebuchi" }],
+  authors: [{ name: "Munachi Onyebuchi", url: "https://munachi.cv" }],
   creator: "Munachi Onyebuchi",
+  publisher: "Munachi Onyebuchi",
+  alternates: {
+    canonical: "https://munachi.cv",
+  },
   openGraph: {
     title: "Munachi Onyebuchi | Frontend Developer",
     description:
-      "I build fast, clean interfaces for SaaS and fintech products — crafted with care, shipped with confidence.",
+      "Frontend developer from Enugu, Nigeria. I build fast, clean interfaces for SaaS and fintech products — crafted with care, shipped with confidence.",
     url: "https://munachi.cv/",
     siteName: "Munachi Onyebuchi",
     type: "website",
@@ -53,7 +64,7 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Munachi Onyebuchi — Frontend Developer",
+        alt: "Munachi Onyebuchi — Frontend Developer from Nigeria",
       },
     ],
   },
@@ -61,20 +72,21 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Munachi Onyebuchi | Frontend Developer",
     description:
-      "I build fast, clean interfaces for SaaS and fintech products — crafted with care, shipped with confidence.",
+      "Frontend developer from Enugu, Nigeria. Building fast, polished interfaces for SaaS and fintech products.",
     creator: "@dev_munachi",
     images: ["/og-image.png"],
   },
   robots: {
     index: true,
     follow: true,
+    "max-image-preview": "large" as const,
+    "max-snippet": -1,
     googleBot: {
       index: true,
       follow: true,
+      "max-image-preview": "large" as const,
+      "max-snippet": -1,
     },
-  },
-  verification: {
-    google: "T5Htue6fhDPN-3J1HNb_FHqR4PS102oW4MjKN_ul5Gk",
   },
   icons: {
     icon: [
@@ -106,12 +118,42 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    name: "Munachi Onyebuchi",
-    url: "https://munachi.cv/",
-  };
+  const jsonLd = [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      name: "Munachi Onyebuchi",
+      url: "https://munachi.cv/",
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      name: "Munachi Onyebuchi",
+      url: "https://munachi.cv",
+      jobTitle: "Frontend Developer",
+      description:
+        "Self-taught frontend developer specializing in React, Next.js, and TypeScript. Co-founder of CampusPadi.",
+      knowsAbout: [
+        "React",
+        "Next.js",
+        "TypeScript",
+        "Tailwind CSS",
+        "Frontend Development",
+        "SaaS",
+        "Fintech",
+      ],
+      sameAs: [
+        "https://twitter.com/dev_munachi",
+        "https://github.com/munachi821",
+        "https://ng.linkedin.com/in/munachi-onyebuchi-90b6a12a8",
+      ],
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Enugu",
+        addressCountry: "NG",
+      },
+    },
+  ];
 
   return (
     <html lang="en" className="scroll-smooth">

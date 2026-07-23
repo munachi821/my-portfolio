@@ -202,7 +202,7 @@ export default function Home() {
                   <span className="text-gunmetal font-medium">
                     Munachi Onyebuchi
                   </span>
-                  , a frontend developer with 2+ years of experience, studying
+                  , a self-taught frontend developer with 2+ years of experience, studying
                   Computer Science at ESUT, based in Enugu.
                 </motion.p>
 
