@@ -10,6 +10,7 @@ import {
   useMotionValueEvent,
 } from "motion/react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const NavItem = ({
   icon: Icon,
@@ -102,6 +103,7 @@ const NavItem = ({
 };
 
 const Navbar = () => {
+  const pathname = usePathname();
   const { scrollY } = useScroll();
   const [hidden, setHidden] = useState(false);
   const [isHoveredNav, setIsHoveredNav] = useState(false);
@@ -109,15 +111,18 @@ const Navbar = () => {
   const [isOverDark, setIsOverDark] = useState(false);
   const headerRef = useRef<HTMLDivElement>(null);
 
+  const isHome = pathname === "/";
+  const isProjectsPage = pathname.startsWith("/projects");
+
   useEffect(() => {
     const handleScroll = () => {
       const sections = document.querySelectorAll("section[id]");
-      let currentSection = "home";
+      let currentSection = isProjectsPage ? "projects" : "home";
 
       sections.forEach((section) => {
         const rect = section.getBoundingClientRect();
         if (rect.top <= window.innerHeight - 80) {
-          currentSection = section.getAttribute("id") || "home";
+          currentSection = section.getAttribute("id") || currentSection;
         }
       });
 
@@ -142,7 +147,7 @@ const Navbar = () => {
     handleScroll();
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [pathname, isProjectsPage]);
 
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;
@@ -171,6 +176,12 @@ const Navbar = () => {
     };
   }, [isHoveredNav]);
 
+  const activeHome = isHome && activeSection === "home";
+  const activeProjects =
+    (isHome && activeSection === "projects") ||
+    (isProjectsPage && activeSection !== "contact");
+  const activeContact = activeSection === "contact";
+
   return (
     <motion.header
       ref={headerRef}
@@ -198,15 +209,15 @@ const Navbar = () => {
               <NavItem
                 icon={Home}
                 label="Home"
-                isActive={activeSection === "home"}
-                href="#home"
+                isActive={activeHome}
+                href="/#home"
                 isDark={isOverDark}
               />
               <NavItem
                 icon={Briefcase}
                 label="Projects"
-                isActive={activeSection === "projects"}
-                href="#projects"
+                isActive={activeProjects}
+                href="/projects"
                 isDark={isOverDark}
               />
               <NavItem
@@ -219,7 +230,7 @@ const Navbar = () => {
               <NavItem
                 icon={Mailbox}
                 label="Contact"
-                isActive={activeSection === "contact"}
+                isActive={activeContact}
                 href="#contact"
                 isDark={isOverDark}
               />
