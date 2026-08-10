@@ -214,7 +214,10 @@ export default function ProjectCaseStudyPage({
 
               {/* Action Links */}
               {project.link && project.link !== "#" && (
-                <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+                <motion.div
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                >
                   <Link
                     href={project.link}
                     target="_blank"
@@ -304,7 +307,7 @@ export default function ProjectCaseStudyPage({
                   className="w-full h-auto object-cover rounded-xl border border-khaki-beige/15 transition-transform duration-500 group-hover:scale-[1.01]"
                 />
                 <div className="absolute inset-0 bg-gunmetal/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-xs font-semibold text-soft-linen! uppercase tracking-wider bg-black/40 backdrop-blur-xs rounded-xl">
-                  Click to Zoom 🔍
+                  Click to Zoom
                 </div>
               </div>
             </div>
@@ -436,7 +439,7 @@ export default function ProjectCaseStudyPage({
                     className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gunmetal/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-xs font-bold text-soft-linen! uppercase tracking-wider backdrop-blur-xs">
-                    Click to Zoom 🔍
+                    Click to Zoom
                   </div>
                 </div>
               ))}
