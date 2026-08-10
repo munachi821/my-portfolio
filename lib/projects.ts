@@ -25,6 +25,12 @@ export type Project = {
   icons: React.ComponentType<{ className?: string }>[];
   link: string;
   featured?: boolean;
+  slug: string; // e.g., "campuspadi"
+  /* liveUrl: string; */ // Renaming 'link' to 'liveUrl' for the actual site link
+  overview: string; // Deeper dive into the problem being solved
+  myRole: string; // Specifically what you built/designed
+  challenges?: string; // Optional: Obstacles you overcame
+  gallery: StaticImageData[]; // Array of product screenshots for the case study
 };
 
 export const projects: Project[] = [
@@ -38,6 +44,11 @@ export const projects: Project[] = [
     icons: [ReactIcon, TailwindCssIcon, TypescriptIcon],
     link: "https://campuspadi.com",
     featured: true,
+    slug: "campuspadi",
+    overview: "",
+    myRole: "",
+    challenges: "",
+    gallery: [],
   },
   {
     title: "Agrotrack",
@@ -49,6 +60,11 @@ export const projects: Project[] = [
     icons: [NextJsIcon, TailwindCssIcon, TypescriptIcon],
     link: "https://agrotrack-app.web.app/",
     featured: true,
+    slug: "agrotrack",
+    overview: "",
+    myRole: "",
+    challenges: "",
+    gallery: [],
   },
   {
     title: "BusierDesk",
@@ -60,6 +76,11 @@ export const projects: Project[] = [
     icons: [NextJsIcon, TailwindCssIcon],
     link: "https://busier-desk-kjo5.vercel.app/",
     featured: true,
+    slug: "busierdesk",
+    overview: "",
+    myRole: "",
+    challenges: "",
+    gallery: [],
   },
   {
     title: "Table-Tap",
@@ -70,6 +91,11 @@ export const projects: Project[] = [
     icons: [NextJsIcon, SupabaseIcon, TailwindCssIcon],
     link: "#",
     featured: true,
+    slug: "tabletap",
+    overview: "",
+    myRole: "",
+    challenges: "",
+    gallery: [],
   },
   {
     title: "Unsaid",
@@ -81,5 +107,10 @@ export const projects: Project[] = [
     icons: [NextJsIcon, SupabaseIcon, TailwindCssIcon],
     link: "https://the-unsaid.vercel.app/",
     featured: true,
+    slug: "unsaid",
+    overview: "",
+    myRole: "",
+    challenges: "",
+    gallery: [],
   },
 ];

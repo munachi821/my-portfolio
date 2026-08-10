@@ -133,16 +133,29 @@ export default function ProjectsPage() {
                       href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="absolute inset-0 z-10 flex items-center justify-center bg-gunmetal/0 group-hover:bg-gunmetal/60 transition-all duration-500"
                     >
-                      <motion.span
-                        initial={{ opacity: 0, y: 10 }}
-                        whileHover={{ opacity: 1, y: 0 }}
-                        className="opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center gap-2 bg-soft-linen text-gunmetal px-6 py-3 rounded-full font-google_sans font-bold text-sm tracking-[0.1em] uppercase shadow-lg"
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        whileHover={{ opacity: 1 }}
+                        transition={{
+                          duration: 0.35,
+                          ease: [0.22, 1, 0.36, 1],
+                        }}
+                        className="absolute inset-0 z-10 flex items-center justify-center bg-gunmetal/60 backdrop-blur-xs"
                       >
-                        Visit Live Site
-                        <ArrowRight size={16} />
-                      </motion.span>
+                        <motion.span
+                          initial={{ y: 12, scale: 0.95 }}
+                          whileHover={{ y: 0, scale: 1 }}
+                          transition={{
+                            duration: 0.3,
+                            ease: [0.22, 1, 0.36, 1],
+                          }}
+                          className="flex items-center gap-2 bg-soft-linen text-gunmetal px-6 py-3 rounded-full font-google_sans font-bold text-sm tracking-[0.1em] uppercase shadow-lg"
+                        >
+                          Visit Live Site
+                          <ArrowRight size={16} />
+                        </motion.span>
+                      </motion.div>
                     </Link>
                   )}
                 </motion.div>
@@ -193,9 +206,7 @@ export default function ProjectsPage() {
                       {project.link !== "#" && (
                         <motion.div whileHover="hover" initial="initial">
                           <Link
-                            href={project.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
+                            href={"/projects/" + project.slug}
                             className="group inline-flex items-center gap-2 text-[13px] font-bold tracking-[0.15em] uppercase text-gunmetal w-fit pb-1 border-b border-gunmetal/30 hover:border-sky-surge hover:text-sky-surge transition-colors duration-300"
                           >
                             <span>View Project</span>

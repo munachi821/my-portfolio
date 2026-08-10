@@ -202,8 +202,8 @@ export default function Home() {
                   <span className="text-gunmetal font-medium">
                     Munachi Onyebuchi
                   </span>
-                  , a self-taught frontend developer with 2+ years of experience, studying
-                  Computer Science at ESUT, based in Enugu.
+                  , a self-taught frontend developer with 2+ years of
+                  experience, studying Computer Science at ESUT, based in Enugu.
                 </motion.p>
 
                 <motion.p
@@ -364,9 +364,7 @@ export default function Home() {
                       </div>
                       <motion.div whileHover="hover" initial="initial">
                         <Link
-                          href={project.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
+                          href={"/projects/" + project.slug}
                           className="group inline-flex items-center gap-2 text-[13px] font-bold tracking-[0.15em] uppercase text-gunmetal w-fit pb-1 border-b border-gunmetal/30 hover:border-sky-surge hover:text-sky-surge transition-colors duration-300"
                         >
                           <span>View Project</span>
