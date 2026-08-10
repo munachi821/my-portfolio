@@ -3,7 +3,7 @@
 import { use } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, useRouter } from "next/navigation";
 import { motion } from "motion/react";
 import { ArrowLeft, ArrowRight, ArrowRightUp } from "reicon-react";
 import ReactLenis from "lenis/react";
@@ -16,6 +16,7 @@ export default function ProjectCaseStudyPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = use(params);
+  const router = useRouter();
   const currentIndex = projects.findIndex((p) => p.slug === slug);
 
   if (currentIndex === -1) {
@@ -27,6 +28,14 @@ export default function ProjectCaseStudyPage({
     projects[(currentIndex - 1 + projects.length) % projects.length];
   const nextProject = projects[(currentIndex + 1) % projects.length];
 
+  const handleBack = () => {
+    if (typeof window !== "undefined" && window.history.length > 1) {
+      router.back();
+    } else {
+      router.push("/");
+    }
+  };
+
   return (
     <ReactLenis root>
       <main className="pt-20 md:pt-24 pb-20 md:pb-32">
@@ -37,16 +46,16 @@ export default function ProjectCaseStudyPage({
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="mb-10 md:mb-14"
         >
-          <Link
-            href="/projects"
-            className="group inline-flex items-center gap-2 text-sm font-google_sans font-medium text-khaki-beige hover:text-gunmetal transition-colors duration-300"
+          <button
+            onClick={handleBack}
+            className="group inline-flex items-center gap-2 text-sm font-google_sans font-medium text-khaki-beige hover:text-gunmetal! transition-colors duration-300 cursor-pointer"
           >
             <ArrowLeft
               size={18}
               className="group-hover:-translate-x-1 transition-transform duration-300"
             />
-            Back to all projects
-          </Link>
+            Back
+          </button>
         </motion.div>
 
         {/* Hero Section */}
@@ -107,7 +116,7 @@ export default function ProjectCaseStudyPage({
                     href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2.5 bg-gunmetal text-soft-linen px-6 py-3.5 rounded-full font-google_sans font-medium text-sm hover:bg-sky-surge hover:text-gunmetal transition-colors duration-300 shadow-md"
+                    className="inline-flex items-center gap-2.5 bg-gunmetal text-soft-linen! px-6 py-3.5 rounded-full font-google_sans font-medium text-sm hover:bg-sky-surge hover:text-gunmetal! transition-colors duration-300 shadow-md"
                   >
                     <span>Visit Live Site</span>
                     <ArrowRightUp size={18} />
@@ -229,7 +238,7 @@ export default function ProjectCaseStudyPage({
                   href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-sm font-bold text-sky-surge hover:underline"
+                  className="inline-flex items-center gap-1.5 text-sm font-bold text-sky-surge! hover:underline"
                 >
                   Visit Application <ArrowRight size={14} />
                 </Link>
