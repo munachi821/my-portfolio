@@ -20,7 +20,8 @@ import CustomCursor from "@/components/uilayouts/custom-cursor";
 export const metadata: Metadata = {
   metadataBase: new URL("https://munachi.cv"),
   title: {
-    default: "Munachi Onyebuchi | Frontend Developer — React, Next.js, TypeScript",
+    default:
+      "Munachi Onyebuchi | Frontend Developer — React, Next.js, TypeScript",
     template: "%s — Munachi Onyebuchi",
   },
   description:
@@ -156,7 +157,7 @@ export default function RootLayout({
   ];
 
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth" data-scroll-behavior="smooth">
       <head>
         <script
           type="application/ld+json"

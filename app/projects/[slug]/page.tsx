@@ -1,6 +1,6 @@
 "use client";
 
-import { use, useState, useEffect } from "react";
+import { use, useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound, useRouter } from "next/navigation";
@@ -19,8 +19,62 @@ export default function ProjectCaseStudyPage({
   const router = useRouter();
   const currentIndex = projects.findIndex((p) => p.slug === slug);
 
+  if (currentIndex === -1) {
+    notFound();
+  }
+
+  const project: Project = projects[currentIndex];
+  const prevProject: Project =
+    projects[(currentIndex - 1 + projects.length) % projects.length];
+  const nextProject: Project = projects[(currentIndex + 1) % projects.length];
+
   const [activeLightboxImage, setActiveLightboxImage] = useState<any>(null);
   const [showStickyHeader, setShowStickyHeader] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  const scrollToCard = (index: number) => {
+    if (scrollRef.current && itemRefs.current[index]) {
+      const container = scrollRef.current;
+      const target = itemRefs.current[index]!;
+      container.scrollTo({
+        left: target.offsetLeft - (window.innerWidth < 768 ? 16 : 32),
+        behavior: "smooth"
+      });
+      setActiveIndex(index);
+    }
+  };
+
+  const handlePrev = () => {
+    scrollToCard(Math.max(0, activeIndex - 1));
+  };
+
+  const handleNext = () => {
+    scrollToCard(Math.min(project.gallery.length - 1, activeIndex + 1));
+  };
+
+  const handleScrollEvent = () => {
+    if (scrollRef.current) {
+      const containerLeft = scrollRef.current.getBoundingClientRect().left;
+      const children = Array.from(scrollRef.current.children) as HTMLElement[];
+      let minDistance = Infinity;
+      let activeIdx = activeIndex;
+      
+      children.forEach((child, index) => {
+        const rect = child.getBoundingClientRect();
+        const distance = Math.abs(rect.left - (containerLeft + (window.innerWidth < 768 ? 16 : 32)));
+        if (distance < minDistance) {
+          minDistance = distance;
+          activeIdx = index;
+        }
+      });
+      
+      if (activeIdx !== activeIndex) {
+        setActiveIndex(activeIdx);
+      }
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,15 +87,6 @@ export default function ProjectCaseStudyPage({
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  if (currentIndex === -1) {
-    notFound();
-  }
-
-  const project: Project = projects[currentIndex];
-  const prevProject: Project =
-    projects[(currentIndex - 1 + projects.length) % projects.length];
-  const nextProject: Project = projects[(currentIndex + 1) % projects.length];
 
   const handleBack = () => {
     if (typeof window !== "undefined" && window.history.length > 1) {
@@ -304,12 +349,24 @@ export default function ProjectCaseStudyPage({
                   alt={`${project.title} detailed screenshot`}
                   priority
                   sizes="(max-width: 768px) 100vw, 1200px"
+                  loading="eager"
                   className="w-full h-auto object-cover rounded-xl border border-khaki-beige/15 transition-transform duration-500 group-hover:scale-[1.01]"
                 />
                 <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center backdrop-blur-xs rounded-xl">
                   <div className="bg-soft-linen/90 border border-white/20 text-gunmetal px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider shadow-lg flex items-center gap-2 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300 ease-out">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-4 w-4"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth="2.5"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                      />
                     </svg>
                     <span>Click to Zoom</span>
                   </div>
@@ -427,25 +484,67 @@ export default function ProjectCaseStudyPage({
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="mb-24 md:mb-32"
           >
-            <h2 className="font-fraunces text-3xl md:text-4xl font-bold text-gunmetal mb-8">
-              Product Screenshots
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+            <div className="flex items-center justify-between mb-8">
+              <h2 className="font-fraunces text-3xl md:text-4xl font-bold text-gunmetal">
+                Product Screenshots
+              </h2>
+              {project.gallery.length > 1 && (
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={handlePrev}
+                    disabled={activeIndex === 0}
+                    className="p-2 rounded-full border border-khaki-beige/30 bg-white/40 hover:bg-white/80 disabled:opacity-30 disabled:pointer-events-none text-gunmetal transition-colors"
+                    aria-label="Scroll left"
+                  >
+                    <ArrowLeft size={16} />
+                  </button>
+                  <button
+                    onClick={handleNext}
+                    disabled={activeIndex === project.gallery.length - 1}
+                    className="p-2 rounded-full border border-khaki-beige/30 bg-white/40 hover:bg-white/80 disabled:opacity-30 disabled:pointer-events-none text-gunmetal transition-colors"
+                    aria-label="Scroll right"
+                  >
+                    <ArrowRight size={16} />
+                  </button>
+                </div>
+              )}
+            </div>
+            
+            {/* Carousel Viewport */}
+            <div
+              ref={scrollRef}
+              onScroll={handleScrollEvent}
+              className="flex overflow-x-auto gap-6 md:gap-8 pb-6 snap-x snap-mandatory scroll-smooth w-full select-none"
+            >
               {project.gallery.map((img, i) => (
                 <div
                   key={i}
+                  ref={(el) => {
+                    itemRefs.current[i] = el;
+                  }}
                   onClick={() => setActiveLightboxImage(img)}
-                  className="group relative rounded-xl overflow-hidden border border-khaki-beige/30 shadow-md bg-white/40 cursor-zoom-in"
+                  className="flex-none w-[280px] sm:w-[320px] md:w-[400px] snap-start group relative rounded-xl overflow-hidden border border-khaki-beige/30 shadow-md bg-white/40 cursor-zoom-in transition-all duration-300"
                 >
                   <Image
                     src={img}
                     alt={`${project.title} screenshot ${i + 1}`}
-                    className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-auto object-cover pointer-events-none select-none"
                   />
                   <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center backdrop-blur-xs">
                     <div className="bg-soft-linen/90 border border-white/20 text-gunmetal px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider shadow-lg flex items-center gap-2 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300 ease-out">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-4 w-4"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth="2.5"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                        />
                       </svg>
                       <span>Click to Zoom</span>
                     </div>
@@ -453,6 +552,24 @@ export default function ProjectCaseStudyPage({
                 </div>
               ))}
             </div>
+
+            {/* Pagination Dots */}
+            {project.gallery.length > 1 && (
+              <div className="flex items-center justify-center gap-2 mt-6">
+                {project.gallery.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => scrollToCard(i)}
+                    className={`h-2 rounded-full transition-all duration-300 ${
+                      i === activeIndex
+                        ? "w-6 bg-sky-surge"
+                        : "w-2 bg-khaki-beige/40 hover:bg-khaki-beige/70"
+                    }`}
+                    aria-label={`Go to slide ${i + 1}`}
+                  />
+                ))}
+              </div>
+            )}
           </motion.section>
         )}
 

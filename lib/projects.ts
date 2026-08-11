@@ -1,5 +1,14 @@
 import campusPadi_logo from "@/assets/campuspadi/campuspadi_logo.png";
 import campuspadi_screenshot from "@/assets/campuspadi/campuspadi-dashboard-screenshot.png";
+import campus_screenshot_1 from "@/assets/campuspadi/campus_screenshot_1.png";
+import campus_screenshot_2 from "@/assets/campuspadi/campus_screenshot_2.png";
+import campus_screenshot_3 from "@/assets/campuspadi/campus_screenshot_3.png";
+import campus_screenshot_4 from "@/assets/campuspadi/campus_screenshot_4.png";
+import campus_screenshot_5 from "@/assets/campuspadi/campus_screenshot_5.png";
+import campus_screenshot_6 from "@/assets/campuspadi/campus_screenshot_6.png";
+import campus_screenshot_7 from "@/assets/campuspadi/campus_screenshot_7.png";
+import campus_screenshot_8 from "@/assets/campuspadi/campus_screenshot_8.png";
+import campus_screenshot_9 from "@/assets/campuspadi/campus_screenshot_9.png";
 import agrotrack_screenshot from "@/assets/agrotrack/agrotrack-landingpage-screenshot.png";
 import busierdesk_screenshot from "@/assets/busierdesk/busierdesk-landingpage-screenshot.png";
 import unsaid_screenshot from "@/assets/unsaid/unsaid-landingpag-screenshot.png";
@@ -57,7 +66,18 @@ export const projects: Project[] = [
       "CGPA Calculation Engine",
       "Mobile Web Client",
     ],
-    gallery: [campuspadi_screenshot],
+    gallery: [
+      campuspadi_screenshot,
+      campus_screenshot_1,
+      campus_screenshot_2,
+      campus_screenshot_3,
+      campus_screenshot_4,
+      campus_screenshot_5,
+      campus_screenshot_6,
+      campus_screenshot_7,
+      campus_screenshot_8,
+      campus_screenshot_9,
+    ],
   },
   {
     title: "Agrotrack",
