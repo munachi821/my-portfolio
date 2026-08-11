@@ -306,8 +306,13 @@ export default function ProjectCaseStudyPage({
                   sizes="(max-width: 768px) 100vw, 1200px"
                   className="w-full h-auto object-cover rounded-xl border border-khaki-beige/15 transition-transform duration-500 group-hover:scale-[1.01]"
                 />
-                <div className="absolute inset-0 bg-gunmetal/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-xs font-semibold text-soft-linen! uppercase tracking-wider bg-black/40 backdrop-blur-xs rounded-xl">
-                  Click to Zoom
+                <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center backdrop-blur-xs rounded-xl">
+                  <div className="bg-soft-linen/90 border border-white/20 text-gunmetal px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider shadow-lg flex items-center gap-2 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300 ease-out">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                    <span>Click to Zoom</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -438,8 +443,13 @@ export default function ProjectCaseStudyPage({
                     alt={`${project.title} screenshot ${i + 1}`}
                     className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gunmetal/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-xs font-bold text-soft-linen! uppercase tracking-wider backdrop-blur-xs">
-                    Click to Zoom
+                  <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center backdrop-blur-xs">
+                    <div className="bg-soft-linen/90 border border-white/20 text-gunmetal px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider shadow-lg flex items-center gap-2 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300 ease-out">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                      </svg>
+                      <span>Click to Zoom</span>
+                    </div>
                   </div>
                 </div>
               ))}
