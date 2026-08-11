@@ -20,7 +20,8 @@ export default function ProjectCaseStudyClient({
   const router = useRouter();
   const currentIndex = projects.findIndex((p) => p.slug === slug);
   const project = projects[currentIndex] || projects[0];
-  const prevProject = projects[(currentIndex - 1 + projects.length) % projects.length];
+  const prevProject =
+    projects[(currentIndex - 1 + projects.length) % projects.length];
   const nextProject = projects[(currentIndex + 1) % projects.length];
 
   const [activeLightboxImage, setActiveLightboxImage] = useState<any>(null);
@@ -35,7 +36,7 @@ export default function ProjectCaseStudyClient({
       const target = itemRefs.current[index]!;
       container.scrollTo({
         left: target.offsetLeft - (window.innerWidth < 768 ? 16 : 32),
-        behavior: "smooth"
+        behavior: "smooth",
       });
       setActiveIndex(index);
     }
@@ -55,16 +56,18 @@ export default function ProjectCaseStudyClient({
       const children = Array.from(scrollRef.current.children) as HTMLElement[];
       let minDistance = Infinity;
       let activeIdx = activeIndex;
-      
+
       children.forEach((child, index) => {
         const rect = child.getBoundingClientRect();
-        const distance = Math.abs(rect.left - (containerLeft + (window.innerWidth < 768 ? 16 : 32)));
+        const distance = Math.abs(
+          rect.left - (containerLeft + (window.innerWidth < 768 ? 16 : 32)),
+        );
         if (distance < minDistance) {
           minDistance = distance;
           activeIdx = index;
         }
       });
-      
+
       if (activeIdx !== activeIndex) {
         setActiveIndex(activeIdx);
       }
@@ -255,17 +258,20 @@ export default function ProjectCaseStudyClient({
               {/* Action Links */}
               {project.link && project.link !== "#" && (
                 <motion.div
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.97 }}
+                  whileHover={{ scale: 1.01 }}
+                  whileTap={{ scale: 0.99 }}
                 >
                   <Link
                     href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2.5 bg-gunmetal text-soft-linen! px-6 py-3.5 rounded-full font-google_sans font-medium text-sm hover:bg-sky-surge hover:text-gunmetal! transition-colors duration-300 shadow-md"
+                    className="group inline-flex items-center gap-1.5 bg-transparent text-gunmetal px-6 py-3 border border-gunmetal/20 rounded-full font-google_sans font-medium text-sm transition-all duration-300 hover:border-gunmetal hover:bg-gunmetal/[0.02]"
                   >
                     <span>Visit Live Site</span>
-                    <ArrowRightUp size={18} />
+                    <ArrowRightUp
+                      size={15}
+                      className="transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300 text-gunmetal/60 group-hover:text-gunmetal"
+                    />
                   </Link>
                 </motion.div>
               )}
@@ -547,7 +553,7 @@ export default function ProjectCaseStudyClient({
                 </div>
               )}
             </div>
-            
+
             {/* Carousel Viewport */}
             <div
               ref={scrollRef}
