@@ -10,11 +10,9 @@ import campus_screenshot_7 from "@/assets/campuspadi/campus_screenshot_7.png";
 import campus_screenshot_8 from "@/assets/campuspadi/campus_screenshot_8.png";
 import campus_screenshot_9 from "@/assets/campuspadi/campus_screenshot_9.png";
 import agrotrack_screenshot from "@/assets/agrotrack/agrotrack-landingpage-screenshot.png";
-import busierdesk_screenshot from "@/assets/busierdesk/busierdesk-landingpage-screenshot.png";
 import unsaid_screenshot from "@/assets/unsaid/unsaid-landingpag-screenshot.png";
 import tabletap_screenshot from "@/assets/tabletap/tabletap-order-screenshot.png";
 import agrotrack_logo from "@/assets/agrotrack/agrotrack_logo.png";
-import busierdesk_logo from "@/assets/busierdesk/busierdesk_logo.png";
 import unsaid_logo from "@/assets/unsaid/theunsaid_logo.png";
 import {
   ReactIcon,
@@ -40,6 +38,9 @@ export type Project = {
   challenges?: string;
   deliverables: string[];
   gallery: StaticImageData[];
+  myTooling: string[];
+  fullStack: string[];
+  event?: string;
 };
 
 export const projects: Project[] = [
@@ -78,6 +79,15 @@ export const projects: Project[] = [
       campus_screenshot_8,
       campus_screenshot_9,
     ],
+    myTooling: ["React.js", "TypeScript", "Tailwind CSS"],
+    fullStack: [
+      "React.js",
+      "TypeScript",
+      "Laravel",
+      "PHP",
+      "Tailwind CSS",
+      "AI Integrations (Gemini, NVIDIA NIM, Groq)",
+    ],
   },
   {
     title: "Agrotrack",
@@ -103,31 +113,19 @@ export const projects: Project[] = [
       "Interactive Map UI",
     ],
     gallery: [agrotrack_screenshot],
-  },
-  {
-    title: "BusierDesk",
-    meta: "Fullstack · AI Voice · Automation",
-    description:
-      "An autonomous AI voice and messaging agent engineered with Vapi and Twilio to capture leads on autopilot. I pitched this live at the Enyata x Interswitch Buildathon Demo Day.",
-    image: busierdesk_screenshot,
-    logo: busierdesk_logo,
-    icons: [NextJsIcon, TailwindCssIcon],
-    link: "https://busier-desk-kjo5.vercel.app/",
-    featured: true,
-    slug: "busierdesk",
-    overview:
-      "BusierDesk is an autonomous AI voice and messaging receptionist designed to convert website traffic into qualified leads 24/7. Engineered during the Enyata x Interswitch Buildathon, it combines voice agents (Vapi), SMS automation (Twilio), and conversational AI to schedule appointments and answer inquiries in real-time.",
-    myRole:
-      "Engineered the fullstack application, building the client dashboard, call logs interface, real-time transcript viewer, and voice widget controls using Next.js, TypeScript, and Tailwind CSS.",
-    challenges:
-      "Managing bidirectional real-time audio streams and dynamic conversation transcripts seamlessly on the web interface while keeping response latency under 500ms.",
-    deliverables: [
-      "Autonomous Voice Bot",
-      "Call Logs Dashboard",
-      "Real-time Transcript Feed",
-      "SMS Automation Engine",
+    myTooling: ["React", "Tailwind CSS"],
+    fullStack: [
+      "React.js",
+      "Node.js",
+      "Tailwind CSS",
+      "Firebase",
+      "TTGO T-Call with SIM800L",
+      "ESP32",
+      "NEO8M GPS",
+      "Google Maps API",
+      "AI Integrations",
     ],
-    gallery: [busierdesk_screenshot],
+    event: "Enugu Campus Hackathon - Top 11 finalist",
   },
   {
     title: "Table-Tap",
@@ -152,6 +150,24 @@ export const projects: Project[] = [
       "Real-time Order Streams",
     ],
     gallery: [tabletap_screenshot],
+    myTooling: [
+      "React.js",
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Framer Motion",
+      "Shadcn UI",
+    ],
+    fullStack: [
+      "React.js",
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Supabase",
+      "PostgreSQL",
+      "Stripe Connect",
+      "WebSockets",
+    ],
   },
   {
     title: "Unsaid",
@@ -177,5 +193,7 @@ export const projects: Project[] = [
       "Data Privacy Hardening",
     ],
     gallery: [unsaid_screenshot],
+    myTooling: ["React", "Tailwind CSS"],
+    fullStack: ["Coming soon"],
   },
 ];

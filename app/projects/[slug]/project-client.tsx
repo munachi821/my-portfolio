@@ -379,7 +379,7 @@ export default function ProjectCaseStudyClient({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="md:col-span-4 flex flex-col gap-8 p-6 md:p-8 rounded-2xl border border-khaki-beige/30 bg-white/30 backdrop-blur-xs h-fit"
+            className="md:col-span-4 flex flex-col gap-6 p-6 md:p-8 rounded-2xl border border-khaki-beige/30 bg-white/30 backdrop-blur-xs h-fit"
           >
             <div>
               <h3 className="text-xs font-bold text-khaki-beige uppercase tracking-[0.15em] mb-2">
@@ -390,6 +390,17 @@ export default function ProjectCaseStudyClient({
               </p>
             </div>
 
+            {project.event && (
+              <div className="border-t border-khaki-beige/20 pt-6">
+                <h3 className="text-xs font-bold text-khaki-beige uppercase tracking-[0.15em] mb-2">
+                  Event / Achievement
+                </h3>
+                <p className="text-sm font-medium font-google_sans text-gunmetal leading-relaxed">
+                  {project.event}
+                </p>
+              </div>
+            )}
+
             <div className="border-t border-khaki-beige/20 pt-6">
               <h3 className="text-xs font-bold text-khaki-beige uppercase tracking-[0.15em] mb-2">
                 Deliverables
@@ -399,6 +410,38 @@ export default function ProjectCaseStudyClient({
                   <li key={i}>{del}</li>
                 ))}
               </ul>
+            </div>
+
+            <div className="border-t border-khaki-beige/20 pt-6">
+              <h3 className="text-xs font-bold text-khaki-beige uppercase tracking-[0.15em] mb-3">
+                My Tooling
+              </h3>
+              <div className="flex flex-wrap gap-1.5">
+                {project.myTooling.map((tool, i) => (
+                  <span
+                    key={i}
+                    className="text-[11px] font-medium font-google_sans px-2.5 py-1 rounded-md bg-gunmetal text-soft-linen! border border-gunmetal/25 shadow-xs"
+                  >
+                    {tool}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="border-t border-khaki-beige/20 pt-6">
+              <h3 className="text-xs font-bold text-khaki-beige uppercase tracking-[0.15em] mb-3">
+                Project Stack
+              </h3>
+              <div className="flex flex-wrap gap-1.5">
+                {project.fullStack.map((stack, i) => (
+                  <span
+                    key={i}
+                    className="text-[11px] font-medium font-google_sans px-2.5 py-1 rounded-md bg-khaki-beige/15 text-gunmetal/80 border border-khaki-beige/30"
+                  >
+                    {stack}
+                  </span>
+                ))}
+              </div>
             </div>
 
             {project.link && project.link !== "#" && (
