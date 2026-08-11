@@ -343,10 +343,9 @@ export default function ProjectCaseStudyPage({
                 Deliverables
               </h3>
               <ul className="text-sm font-google_sans text-gunmetal/80 space-y-1.5 list-disc list-inside">
-                <li>UI Architecture & Design</li>
-                <li>Frontend Implementation</li>
-                <li>Performance Optimization</li>
-                <li>Responsive Design</li>
+                {project.deliverables.map((del, i) => (
+                  <li key={i}>{del}</li>
+                ))}
               </ul>
             </div>
 

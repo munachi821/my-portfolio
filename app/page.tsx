@@ -7,7 +7,7 @@ import Link from "next/link";
 import { motion } from "motion/react";
 import ReactLenis from "lenis/react";
 import TechStack from "@/components/uilayouts/techstack";
-import campusPadi_logo from "@/assets/campuspadi_logo.png";
+import campusPadi_logo from "@/assets/campuspadi/campuspadi_logo.png";
 import { projects } from "@/lib/projects";
 import ContactSection from "@/components/contact-section";
 import VariableFontCursorProximity from "@/components/uilayouts/text-weight";

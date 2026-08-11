@@ -1,12 +1,12 @@
-import campusPadi_logo from "@/assets/campuspadi_logo.png";
-import campuspadi_screenshot from "@/assets/campuspadi-dashboard-screenshot.png";
-import agrotrack_screenshot from "@/assets/agrotrack-landingpage-screenshot.png";
-import busierdesk_screenshot from "@/assets/busierdesk-landingpage-screenshot.png";
-import unsaid_screenshot from "@/assets/unsaid-landingpag-screenshot.png";
-import tabletap_screenshot from "@/assets/tabletap-order-screenshot.png";
-import agrotrack_logo from "@/assets/agrotrack_logo.png";
-import busierdesk_logo from "@/assets/busierdesk_logo.png";
-import unsaid_logo from "@/assets/theunsaid_logo.png";
+import campusPadi_logo from "@/assets/campuspadi/campuspadi_logo.png";
+import campuspadi_screenshot from "@/assets/campuspadi/campuspadi-dashboard-screenshot.png";
+import agrotrack_screenshot from "@/assets/agrotrack/agrotrack-landingpage-screenshot.png";
+import busierdesk_screenshot from "@/assets/busierdesk/busierdesk-landingpage-screenshot.png";
+import unsaid_screenshot from "@/assets/unsaid/unsaid-landingpag-screenshot.png";
+import tabletap_screenshot from "@/assets/tabletap/tabletap-order-screenshot.png";
+import agrotrack_logo from "@/assets/agrotrack/agrotrack_logo.png";
+import busierdesk_logo from "@/assets/busierdesk/busierdesk_logo.png";
+import unsaid_logo from "@/assets/unsaid/theunsaid_logo.png";
 import {
   ReactIcon,
   TailwindCssIcon,
@@ -29,6 +29,7 @@ export type Project = {
   overview: string;
   myRole: string;
   challenges?: string;
+  deliverables: string[];
   gallery: StaticImageData[];
 };
 
@@ -50,6 +51,12 @@ export const projects: Project[] = [
       "As Co-Founder and Lead Frontend Developer, I spearheaded the complete client-side architecture. I built responsive dashboards, payment integration interfaces, CGPA calculator utilities, and study tool interfaces using React, TypeScript, and Tailwind CSS. I prioritized fast load times on mobile networks and seamless UX for everyday student use.",
     challenges:
       "Designing for high-variance mobile network speeds across campus required heavy client-side state caching, aggressive asset optimization, and defensive UI states for offline/slow connections.",
+    deliverables: [
+      "Product Strategy",
+      "Payment Collection Systems",
+      "CGPA Calculation Engine",
+      "Mobile Web Client",
+    ],
     gallery: [campuspadi_screenshot],
   },
   {
@@ -69,6 +76,12 @@ export const projects: Project[] = [
       "I designed and developed the web dashboard and interactive mapping interface using Next.js, TypeScript, and Tailwind CSS. I implemented real-time geo-visualization primitives to render geofence perimeters, alert logs, and animal tracking telemetry with low latency.",
     challenges:
       "Displaying dynamic geospatial perimeters and handling real-time alert updates without lagging the browser DOM required efficient state management and optimized SVG mapping components.",
+    deliverables: [
+      "IoT Hardware Integration",
+      "Geofencing Engine",
+      "Real-time Alerts Dashboard",
+      "Interactive Map UI",
+    ],
     gallery: [agrotrack_screenshot],
   },
   {
@@ -88,6 +101,12 @@ export const projects: Project[] = [
       "Engineered the fullstack application, building the client dashboard, call logs interface, real-time transcript viewer, and voice widget controls using Next.js, TypeScript, and Tailwind CSS.",
     challenges:
       "Managing bidirectional real-time audio streams and dynamic conversation transcripts seamlessly on the web interface while keeping response latency under 500ms.",
+    deliverables: [
+      "Autonomous Voice Bot",
+      "Call Logs Dashboard",
+      "Real-time Transcript Feed",
+      "SMS Automation Engine",
+    ],
     gallery: [busierdesk_screenshot],
   },
   {
@@ -106,6 +125,12 @@ export const projects: Project[] = [
       "Designed and built the fullstack application powered by Next.js and Supabase. Implemented role-based data isolation for multi-tenant security, live order status synchronization via WebSockets/Supabase Realtime, and responsive KDS UI tailored for kitchen touchscreens.",
     challenges:
       "Ensuring zero-data-leakage multi-tenancy across active restaurant accounts and building an unshakeable, auto-reconnecting WebSocket listener for fast-paced kitchen environments.",
+    deliverables: [
+      "Multi-Tenant DB Architecture",
+      "QR-Code Ordering System",
+      "Kitchen Display (KDS) Interface",
+      "Real-time Order Streams",
+    ],
     gallery: [tabletap_screenshot],
   },
   {
@@ -125,6 +150,12 @@ export const projects: Project[] = [
       "Built the platform using Next.js, Supabase, and Tailwind CSS. Focused on clean micro-interactions, dark mode aesthetic, image upload handling, and responsive feed layout.",
     challenges:
       "Optimizing media load speeds and ensuring complete anonymity on database queries without compromising user feed pagination performance.",
+    deliverables: [
+      "Confession Submission Engine",
+      "Image Upload Hosting",
+      "Minimalist Feed UI",
+      "Data Privacy Hardening",
+    ],
     gallery: [unsaid_screenshot],
   },
 ];
