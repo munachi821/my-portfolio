@@ -7,21 +7,21 @@ import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "motion/react";
 import { ArrowLeft, ArrowRight, ArrowRightUp } from "reicon-react";
 import ReactLenis from "lenis/react";
-import { Project } from "@/lib/projects";
+import { projects, Project } from "@/lib/projects";
 import ContactSection from "@/components/contact-section";
 
 interface ProjectCaseStudyClientProps {
-  project: Project;
-  prevProject: Project;
-  nextProject: Project;
+  slug: string;
 }
 
 export default function ProjectCaseStudyClient({
-  project,
-  prevProject,
-  nextProject,
+  slug,
 }: ProjectCaseStudyClientProps) {
   const router = useRouter();
+  const currentIndex = projects.findIndex((p) => p.slug === slug);
+  const project = projects[currentIndex] || projects[0];
+  const prevProject = projects[(currentIndex - 1 + projects.length) % projects.length];
+  const nextProject = projects[(currentIndex + 1) % projects.length];
 
   const [activeLightboxImage, setActiveLightboxImage] = useState<any>(null);
   const [showStickyHeader, setShowStickyHeader] = useState(false);

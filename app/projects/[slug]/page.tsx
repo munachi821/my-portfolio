@@ -55,16 +55,7 @@ export default async function ProjectCaseStudyPage({ params }: PageProps) {
     notFound();
   }
 
-  const project: Project = projects[currentIndex];
-  const prevProject: Project =
-    projects[(currentIndex - 1 + projects.length) % projects.length];
-  const nextProject: Project = projects[(currentIndex + 1) % projects.length];
-
   return (
-    <ProjectCaseStudyClient
-      project={project}
-      prevProject={prevProject}
-      nextProject={nextProject}
-    />
+    <ProjectCaseStudyClient slug={slug} />
   );
 }
