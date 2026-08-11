@@ -14,14 +14,15 @@ export async function generateMetadata({
   const project = projects.find((p) => p.slug === slug);
   if (!project) return {};
 
-  const title = `${project.title} — Case Study | Munachi`;
+  const title = project.title;
+  const fullTitle = `${project.title} — Munachi Onyebuchi`;
   const description = project.description || `Case study detailing the engineering, tools, and challenges of ${project.title}.`;
 
   return {
     title,
     description,
     openGraph: {
-      title,
+      title: fullTitle,
       description,
       type: "website",
       url: `https://munachi.cv/projects/${slug}`,
@@ -36,7 +37,7 @@ export async function generateMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title,
+      title: fullTitle,
       description,
       images: [project.image.src],
     },
