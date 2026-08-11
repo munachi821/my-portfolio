@@ -1,20 +1,32 @@
-import type { MetadataRoute } from "next";
+import { MetadataRoute } from "next";
+import { projects } from "@/lib/projects";
 
-const BASE_URL = "https://munachi.cv";
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const baseUrl = "https://munachi.cv";
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  return [
+  // Base pages
+  const routes = [
     {
-      url: BASE_URL,
+      url: baseUrl,
       lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 1,
+      changeFrequency: "monthly" as const,
+      priority: 1.0,
     },
     {
-      url: `${BASE_URL}/projects`,
+      url: `${baseUrl}/projects`,
       lastModified: new Date(),
-      changeFrequency: "monthly",
+      changeFrequency: "monthly" as const,
       priority: 0.8,
     },
   ];
+
+  // Dynamic project pages
+  const projectRoutes = projects.map((project) => ({
+    url: `${baseUrl}/projects/${project.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
+  return [...routes, ...projectRoutes];
 }
