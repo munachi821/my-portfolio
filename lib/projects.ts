@@ -10,8 +10,28 @@ import campus_screenshot_7 from "@/assets/campuspadi/campus_screenshot_7.png";
 import campus_screenshot_8 from "@/assets/campuspadi/campus_screenshot_8.png";
 import campus_screenshot_9 from "@/assets/campuspadi/campus_screenshot_9.png";
 import agrotrack_screenshot from "@/assets/agrotrack/agrotrack-landingpage-screenshot.png";
+import agrotrack_screenshot_1 from "@/assets/agrotrack/agrotrack_screenshot_1.png";
+import agrotrack_screenshot_2 from "@/assets/agrotrack/agrotrack_screenshot_2.png";
+import agrotrack_screenshot_3 from "@/assets/agrotrack/agrotrack_screenshot_3.png";
+import agrotrack_screenshot_4 from "@/assets/agrotrack/agrotrack_screenshot_4.png";
+import agrotrack_screenshot_5 from "@/assets/agrotrack/agrotrack_screenshot_5.png";
 import unsaid_screenshot from "@/assets/unsaid/unsaid-landingpag-screenshot.png";
+import unsaid_screenshot_1 from "@/assets/unsaid/unsaid_screenshot_1.png";
+import unsaid_screenshot_2 from "@/assets/unsaid/unsaid_screenshot_2.png";
+import unsaid_screenshot_3 from "@/assets/unsaid/unsaid_screenshot_3.png";
+import unsaid_screenshot_4 from "@/assets/unsaid/unsaid_screenshot_4.png";
+import unsaid_screenshot_5 from "@/assets/unsaid/unsaid_screenshot_5.png";
 import tabletap_screenshot from "@/assets/tabletap/tabletap-order-screenshot.png";
+import tabletap_screenshot_1 from "@/assets/tabletap/tabletap_screenshot_1.png";
+import tabletap_screenshot_2 from "@/assets/tabletap/tabletap_screenshot_2.png";
+import tabletap_screenshot_3 from "@/assets/tabletap/tabletap_screenshot_3.png";
+import tabletap_screenshot_4 from "@/assets/tabletap/tabletap_screenshot_4.png";
+import tabletap_screenshot_5 from "@/assets/tabletap/tabletap_screenshot_5.png";
+import tabletap_screenshot_6 from "@/assets/tabletap/tabletap_screenshot_6.png";
+import tabletap_screenshot_7 from "@/assets/tabletap/tabletap_screenshot_7.png";
+import tabletap_screenshot_8 from "@/assets/tabletap/tabletap_screenshot_8.png";
+import tabletap_screenshot_9 from "@/assets/tabletap/tabletap_screenshot_9.png";
+import tabletap_screenshot_10 from "@/assets/tabletap/tabletap_screenshot_10.png";
 import agrotrack_logo from "@/assets/agrotrack/agrotrack_logo.png";
 import unsaid_logo from "@/assets/unsaid/theunsaid_logo.png";
 import {
@@ -112,7 +132,14 @@ export const projects: Project[] = [
       "Real-time Alerts Dashboard",
       "Interactive Map UI",
     ],
-    gallery: [agrotrack_screenshot],
+    gallery: [
+      agrotrack_screenshot,
+      agrotrack_screenshot_1,
+      agrotrack_screenshot_2,
+      agrotrack_screenshot_3,
+      agrotrack_screenshot_4,
+      agrotrack_screenshot_5,
+    ],
     myTooling: ["React", "Tailwind CSS"],
     fullStack: [
       "React.js",
@@ -134,7 +161,7 @@ export const projects: Project[] = [
       "A multi-tenant restaurant ordering and Kitchen Display System built on Supabase. One unified codebase reliably serves isolated environments for multiple restaurants.",
     image: tabletap_screenshot,
     icons: [NextJsIcon, SupabaseIcon, TailwindCssIcon],
-    link: "#",
+    link: "https://table-tap-cyan.vercel.app/",
     featured: true,
     slug: "tabletap",
     overview:
@@ -149,7 +176,19 @@ export const projects: Project[] = [
       "Kitchen Display (KDS) Interface",
       "Real-time Order Streams",
     ],
-    gallery: [tabletap_screenshot],
+    gallery: [
+      tabletap_screenshot,
+      tabletap_screenshot_1,
+      tabletap_screenshot_2,
+      tabletap_screenshot_3,
+      tabletap_screenshot_4,
+      tabletap_screenshot_5,
+      tabletap_screenshot_6,
+      tabletap_screenshot_7,
+      tabletap_screenshot_8,
+      tabletap_screenshot_9,
+      tabletap_screenshot_10,
+    ],
     myTooling: [
       "React.js",
       "Next.js",
@@ -191,7 +230,14 @@ export const projects: Project[] = [
       "Minimalist Feed UI",
       "Data Privacy Hardening",
     ],
-    gallery: [unsaid_screenshot],
+    gallery: [
+      unsaid_screenshot,
+      unsaid_screenshot_1,
+      unsaid_screenshot_2,
+      unsaid_screenshot_3,
+      unsaid_screenshot_4,
+      unsaid_screenshot_5,
+    ],
     myTooling: ["React", "Tailwind CSS"],
     fullStack: ["Coming soon"],
   },
