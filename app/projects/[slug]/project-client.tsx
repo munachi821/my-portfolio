@@ -24,8 +24,75 @@ export default function ProjectCaseStudyClient({
     projects[(currentIndex - 1 + projects.length) % projects.length];
   const nextProject = projects[(currentIndex + 1) % projects.length];
 
+  const renderContent = (text: string) => {
+    if (!text) return null;
+    const lines = text.split("\n");
+    const renderedElements: any[] = [];
+    
+    let currentBulletGroup: { title: string; desc: string; cleanText?: string; key: number }[] = [];
+    
+    const flushBulletGroup = (key: number) => {
+      if (currentBulletGroup.length > 0) {
+        renderedElements.push(
+          <ul key={`list-${key}`} className="list-disc pl-6 space-y-3.5 my-5 text-base md:text-lg text-gunmetal/80 leading-relaxed">
+            {currentBulletGroup.map((item) => {
+              if (item.title) {
+                return (
+                  <li key={item.key} className="marker:text-khaki-beige">
+                    <strong className="font-bold text-gunmetal">
+                      {item.title}:
+                    </strong>{" "}
+                    {item.desc}
+                  </li>
+                );
+              }
+              return (
+                <li key={item.key} className="marker:text-khaki-beige">
+                  {item.cleanText}
+                </li>
+              );
+            })}
+          </ul>
+        );
+        currentBulletGroup = [];
+      }
+    };
+    
+    lines.forEach((line, index) => {
+      const trimmed = line.trim();
+      if (!trimmed) {
+        flushBulletGroup(index);
+        return;
+      }
+      
+      if (trimmed.startsWith("•") || trimmed.startsWith("*")) {
+        const cleanText = trimmed.replace(/^[•*]\s*/, "");
+        const colonIndex = cleanText.indexOf(":");
+        if (colonIndex !== -1) {
+          const title = cleanText.substring(0, colonIndex).trim();
+          const desc = cleanText.substring(colonIndex + 1).trim();
+          currentBulletGroup.push({ title, desc, key: index });
+        } else {
+          currentBulletGroup.push({ title: "", desc: "", cleanText, key: index });
+        }
+      } else {
+        flushBulletGroup(index);
+        renderedElements.push(
+          <p 
+            key={index} 
+            className="text-base md:text-lg text-gunmetal/80 leading-[1.85] my-4"
+          >
+            {trimmed}
+          </p>
+        );
+      }
+    });
+    
+    flushBulletGroup(lines.length);
+    return <div className="space-y-4">{renderedElements}</div>;
+  };
+
   const [activeLightboxImage, setActiveLightboxImage] = useState<any>(null);
-  const [showStickyHeader, setShowStickyHeader] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -74,17 +141,7 @@ export default function ProjectCaseStudyClient({
     }
   };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 400) {
-        setShowStickyHeader(true);
-      } else {
-        setShowStickyHeader(false);
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+
 
   const handleBack = () => {
     if (typeof window !== "undefined" && window.history.length > 1) {
@@ -96,46 +153,6 @@ export default function ProjectCaseStudyClient({
 
   return (
     <ReactLenis root>
-      {/* Sticky Floating Sub-Header on Scroll */}
-      <AnimatePresence>
-        {showStickyHeader && (
-          <motion.header
-            initial={{ y: -70, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: -70, opacity: 0 }}
-            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed top-5 left-1/2 -translate-x-1/2 z-40 bg-soft-linen/90 backdrop-blur-md border border-khaki-beige/40 rounded-full px-5 py-2.5 shadow-xl flex items-center justify-between gap-4 max-w-lg w-[90%]"
-          >
-            <div className="flex items-center gap-3 truncate">
-              {project.logo && (
-                <Image
-                  src={project.logo}
-                  alt={`${project.title} logo`}
-                  className="w-6 h-6 object-contain shrink-0"
-                />
-              )}
-              <span className="font-fraunces font-bold text-gunmetal text-sm md:text-base truncate">
-                {project.title}
-              </span>
-            </div>
-
-            <div className="flex items-center gap-2 shrink-0">
-              {project.link && project.link !== "#" && (
-                <Link
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 bg-gunmetal text-soft-linen! text-xs font-bold px-4 py-2 rounded-full hover:bg-sky-surge hover:text-gunmetal! transition-colors duration-300 shadow-sm"
-                >
-                  <span>Visit Site</span>
-                  <ArrowRightUp size={14} />
-                </Link>
-              )}
-            </div>
-          </motion.header>
-        )}
-      </AnimatePresence>
-
       {/* Lightbox Zoom Modal */}
       <AnimatePresence>
         {activeLightboxImage && (
@@ -385,7 +402,7 @@ export default function ProjectCaseStudyClient({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="md:col-span-4 flex flex-col gap-6 p-6 md:p-8 rounded-2xl border border-khaki-beige/30 bg-white/30 backdrop-blur-xs h-fit"
+            className="md:col-span-4 flex flex-col gap-6 p-6 md:p-8 rounded-2xl border border-khaki-beige/30 bg-white/30 backdrop-blur-xs h-fit md:sticky md:top-10 z-10"
           >
             <div>
               <h3 className="text-xs font-bold text-khaki-beige uppercase tracking-[0.15em] mb-2">
@@ -420,29 +437,13 @@ export default function ProjectCaseStudyClient({
 
             <div className="border-t border-khaki-beige/20 pt-6">
               <h3 className="text-xs font-bold text-khaki-beige uppercase tracking-[0.15em] mb-3">
-                My Tooling
-              </h3>
-              <div className="flex flex-wrap gap-1.5">
-                {project.myTooling.map((tool, i) => (
-                  <span
-                    key={i}
-                    className="text-[11px] font-medium font-google_sans px-2.5 py-1 rounded-md bg-gunmetal text-soft-linen! border border-gunmetal/25 shadow-xs"
-                  >
-                    {tool}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <div className="border-t border-khaki-beige/20 pt-6">
-              <h3 className="text-xs font-bold text-khaki-beige uppercase tracking-[0.15em] mb-3">
-                Project Stack
+                Technologies
               </h3>
               <div className="flex flex-wrap gap-1.5">
                 {project.fullStack.map((stack, i) => (
                   <span
                     key={i}
-                    className="text-[11px] font-medium font-google_sans px-2.5 py-1 rounded-md bg-khaki-beige/15 text-gunmetal/80 border border-khaki-beige/30"
+                    className="text-[11px] font-medium font-google_sans px-2.5 py-1 rounded-md bg-gunmetal text-soft-linen! border border-gunmetal/25 shadow-xs"
                   >
                     {stack}
                   </span>
@@ -479,9 +480,9 @@ export default function ProjectCaseStudyClient({
               <h2 className="font-fraunces text-2xl md:text-3xl font-bold text-gunmetal mb-4">
                 Overview & Context
               </h2>
-              <p className="text-base md:text-lg text-gunmetal/80 leading-[1.85] whitespace-pre-line">
-                {project.overview || project.description}
-              </p>
+              <div className="text-base md:text-lg text-gunmetal/80 leading-[1.85]">
+                {renderContent(project.overview || project.description)}
+              </div>
             </motion.div>
 
             {/* My Role */}
@@ -494,10 +495,12 @@ export default function ProjectCaseStudyClient({
               <h2 className="font-fraunces text-2xl md:text-3xl font-bold text-gunmetal mb-4">
                 What I Engineered
               </h2>
-              <p className="text-base md:text-lg text-gunmetal/80 leading-[1.85] whitespace-pre-line">
-                {project.myRole ||
-                  "Designed and built key responsive features, focusing on rapid page loads, state synchronization, and accessible UI interactions."}
-              </p>
+              <div className="text-base md:text-lg text-gunmetal/80 leading-[1.85]">
+                {renderContent(
+                  project.myRole ||
+                    "Designed and built key responsive features, focusing on rapid page loads, state synchronization, and accessible UI interactions."
+                )}
+              </div>
             </motion.div>
 
             {/* Challenges if present */}
@@ -511,9 +514,9 @@ export default function ProjectCaseStudyClient({
                 <h2 className="font-fraunces text-2xl md:text-3xl font-bold text-gunmetal mb-4">
                   Challenges & Lessons
                 </h2>
-                <p className="text-base md:text-lg text-gunmetal/80 leading-[1.85] whitespace-pre-line">
-                  {project.challenges}
-                </p>
+                <div className="text-base md:text-lg text-gunmetal/80 leading-[1.85]">
+                  {renderContent(project.challenges)}
+                </div>
               </motion.div>
             )}
           </div>
