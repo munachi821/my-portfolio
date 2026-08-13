@@ -121,11 +121,11 @@ export const projects: Project[] = [
     featured: true,
     slug: "agrotrack",
     overview:
-      "Agrotrack addresses a critical agricultural and social challenge: reducing conflicts between pastoral herders and local farmers. By leveraging IoT hardware and geofencing technology, the platform establishes virtual boundaries around farmland.\n\nWhen livestock approach or breach designated farm perimeters, the system broadcasts instant alerts to farmers and regional monitoring teams to prevent crop destruction.",
+      "Agrotrack is an IoT-powered geofencing platform designed to reduce conflict between farmers and livestock herders. It integrates physical tracking hardware with a digital mapping system to protect agricultural zoning:\n\n• Virtual Farmland Geofences: Custom virtual boundaries created by farmers to monitor perimeter safety around crop zones.\n• Live Telemetry Stream: Real-time map displaying GPS coordinates of grazing herds next to protected farm zones.\n• Instant Perimeter Alerts: Automated SMS/push notification triggers dispatched to farmers and herders the moment livestock cross a geofence.\n• Hardware Node Sync: Low-power ESP32 microcontrollers with GPS modules sending coordinates to the cloud via cellular nodes.",
     myRole:
-      "I designed and developed the web dashboard and interactive mapping interface using Next.js, TypeScript, and Tailwind CSS. I implemented real-time geo-visualization primitives to render geofence perimeters, alert logs, and animal tracking telemetry with low latency.",
+      "I engineered the mapping visualization and real-time data sync pipeline. Key contributions included:\n\n• Interactive Geospatial Layer: Built a responsive, vector-based rendering layer with Leaflet and React to project complex geofences and path histories without lagging the DOM.\n• Telemetry Sync Loop: Connected real-time database updates from IoT hardware (ESP32/SIM800L GPS) to the frontend, utilizing debounce algorithms to prevent map stutter.\n• Alert Event Triggers: Set up serverless function endpoints to process incoming location payloads, calculate intersections, and queue immediate SMS alerts.",
     challenges:
-      "Displaying dynamic geospatial perimeters and handling real-time alert updates without lagging the browser DOM required efficient state management and optimized SVG mapping components.",
+      "• High-Frequency Rendering Lag: Drawing dozens of active GPS tracks and multi-point geofence boundaries caused major browser reflow bottlenecks. I optimized this by implementing canvas-based map rendering rather than SVG DOM elements, cutting rendering time by 75%.\n• Latent GPS Telemetry: Fluctuating cellular signals in remote areas sent duplicate or delayed GPS packages. I resolved this by coding a temporal-distance filter on the backend to verify coordinate velocity before updating the live map.",
     deliverables: [
       "IoT Hardware Integration",
       "Geofencing Engine",
@@ -219,11 +219,11 @@ export const projects: Project[] = [
     featured: true,
     slug: "unsaid",
     overview:
-      "Unsaid is a minimalist anonymous social platform built for expressing unspoken thoughts, confessions, and feedback in a private space. It emphasizes user privacy, seamless content delivery, and simple interaction models.",
+      "Unsaid is a minimalist, anonymous social sharing space designed for raw self-expression and confessions. The platform operates on absolute anonymity and responsive micro-interactions:\n\n• Public Confessions Feed: A completely untraceable chronological feed featuring anonymized textual and visual cards.\n• Minimalist Post Creator: An interface where users submit confessions alongside optional media assets without accounts or IP logging.\n• Interactive Reactions: Engagement loops allowing users to interact with posts using pre-defined anonymous emotions.",
     myRole:
-      "Built the platform using Next.js, Supabase, and Tailwind CSS. Focused on clean micro-interactions, dark mode aesthetic, image upload handling, and responsive feed layout.",
+      "I built the entire web app and engineered the data-anonymization architecture. Key contributions included:\n\n• Absolute Privacy Pipeline: Decoupled post creations from user-identifiable data, stripping IP addresses, request headers, and metadata at the api endpoint before writing records.\n• Optimized Media Store: Integrated client-side WebP compression and Supabase storage to process, optimize, and host confessions images under a 1MB limit for quick page load times.\n• Dark Mode Aesthetic: Crafted a high-contrast dark theme with Framer Motion transitions for smooth feed interactions and content loading.",
     challenges:
-      "Optimizing media load speeds and ensuring complete anonymity on database queries without compromising user feed pagination performance.",
+      "• Preventing Identity Leakage: Traditional relational schemas risk connecting posts to accounts through trace logs. I restructured the database to store user sessions in ephemeral localStorage tokens and separated authentication states from post records entirely.\n• Image Load Performance: Loading raw image uploads on infinite-scroll confession feeds caused high layout shift and network latency. I resolved this by pre-compressing images to next-gen WebP formats on the client and serving them using Next.js Image optimization and BlurHash placeholders.",
     deliverables: [
       "Confession Submission Engine",
       "Image Upload Hosting",
