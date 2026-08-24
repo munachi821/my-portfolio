@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     template: "%s — Munachi Onyebuchi",
   },
   description:
-    "Munachi Onyebuchi is a self-taught frontend developer from Enugu, Nigeria, specializing in React, Next.js, and TypeScript. Building fast, polished interfaces for SaaS and fintech products. Co-founder of CampusPadi.",
+    "Munachi Onyebuchi is a frontend developer in Enugu, Nigeria, building high-performance interfaces with React, Next.js, and TypeScript. Co-founder of CampusPadi.",
   keywords: [
     "Munachi Onyebuchi",
     "Munachi",
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     description:
       "Frontend developer from Enugu, Nigeria. I build fast, clean interfaces for SaaS and fintech products — crafted with care, shipped with confidence.",
     url: "https://munachi.cv/",
-    siteName: "Munachi Onyebuchi",
+    siteName: "Munachi Onyebuchi Portfolio",
     type: "website",
     locale: "en_US",
     images: [
@@ -119,42 +119,69 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const jsonLd = [
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      name: "Munachi Onyebuchi",
-      url: "https://munachi.cv/",
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      name: "Munachi Onyebuchi",
-      url: "https://munachi.cv",
-      jobTitle: "Frontend Developer",
-      description:
-        "Self-taught frontend developer specializing in React, Next.js, and TypeScript. Co-founder of CampusPadi.",
-      knowsAbout: [
-        "React",
-        "Next.js",
-        "TypeScript",
-        "Tailwind CSS",
-        "Frontend Development",
-        "SaaS",
-        "Fintech",
-      ],
-      sameAs: [
-        "https://twitter.com/dev_munachi",
-        "https://github.com/munachi821",
-        "https://ng.linkedin.com/in/munachi-onyebuchi-90b6a12a8",
-      ],
-      address: {
-        "@type": "PostalAddress",
-        addressLocality: "Enugu",
-        addressCountry: "NG",
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://munachi.cv/#website",
+        url: "https://munachi.cv/",
+        name: "Munachi Onyebuchi",
+        description:
+          "Portfolio of Munachi Onyebuchi, a Frontend Developer building fast, polished web interfaces.",
+        publisher: {
+          "@id": "https://munachi.cv/#person",
+        },
+        inLanguage: "en-US",
       },
-    },
-  ];
+      {
+        "@type": "Person",
+        "@id": "https://munachi.cv/#person",
+        name: "Munachi Onyebuchi",
+        url: "https://munachi.cv",
+        image: "https://munachi.cv/og-image.png",
+        jobTitle: "Frontend Developer",
+        description:
+          "Self-taught frontend developer specializing in React, Next.js, and TypeScript. Co-founder of CampusPadi.",
+        alumniOf: {
+          "@type": "EducationalOrganization",
+          name: "Enugu State University of Science and Technology",
+          alternateName: "ESUT",
+        },
+        founder: [
+          {
+            "@type": "Organization",
+            name: "CampusPadi",
+            url: "https://campuspadi.com",
+          },
+        ],
+        knowsAbout: [
+          "React",
+          "Next.js",
+          "TypeScript",
+          "Tailwind CSS",
+          "Frontend Development",
+          "Software Engineering",
+          "Web Performance Optimization",
+          "SaaS Development",
+          "Fintech",
+        ],
+        sameAs: [
+          "https://x.com/dev_munachi",
+          "https://twitter.com/dev_munachi",
+          "https://github.com/munachi821",
+          "https://ng.linkedin.com/in/munachi-onyebuchi-90b6a12a8",
+          "https://www.tiktok.com/@dev_muna",
+        ],
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Enugu",
+          addressRegion: "Enugu State",
+          addressCountry: "NG",
+        },
+      },
+    ],
+  };
 
   return (
     <html lang="en" className="scroll-smooth" data-scroll-behavior="smooth">
