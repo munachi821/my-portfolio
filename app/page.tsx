@@ -43,7 +43,11 @@ export default function Home() {
               }}
               className="w-40 h-40 md:w-60 md:h-60 rounded-4xl overflow-hidden bg-black"
             >
-              <Image src={myPhoto} alt="Munachi" loading="eager" />
+              <Image
+                src={myPhoto}
+                alt="Munachi Onyebuchi - Frontend Developer in Enugu, Nigeria"
+                loading="eager"
+              />
             </motion.div>
 
             <motion.div
@@ -180,7 +184,7 @@ export default function Home() {
                     <Image
                       src={campusPadi_logo}
                       width={22}
-                      alt="campuspadi"
+                      alt="CampusPadi platform logo"
                       className="shrink-0 rounded-sm"
                     />
                     CampusPadi
@@ -310,7 +314,7 @@ export default function Home() {
                   <div className="p-1 bg-soft-linen/10">
                     <Image
                       src={project.image}
-                      alt={`${project.title} screenshot`}
+                      alt={`${project.title} - ${project.meta} interface screenshot`}
                       sizes="(max-width: 768px) 100vw, 960px"
                       priority={idx === 0}
                       className="w-full h-auto object-cover rounded-lg border border-khaki-beige/10"

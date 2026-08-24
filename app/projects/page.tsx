@@ -120,7 +120,7 @@ export default function ProjectsPage() {
                   <div className="p-1 bg-soft-linen/10">
                     <Image
                       src={project.image}
-                      alt={`${project.title} screenshot`}
+                      alt={`${project.title} - ${project.meta} interface screenshot`}
                       sizes="(max-width: 768px) 100vw, 960px"
                       priority={idx === 0}
                       className="w-full h-auto object-cover rounded-lg border border-khaki-beige/10"
