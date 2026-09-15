@@ -170,7 +170,7 @@ export default function RootLayout({
           "https://x.com/dev_munachi",
           "https://twitter.com/dev_munachi",
           "https://github.com/munachi821",
-          "https://ng.linkedin.com/in/munachi-onyebuchi-90b6a12a8",
+          "https://www.linkedin.com/in/munachi-onyebuchi/",
           "https://www.tiktok.com/@dev_muna",
         ],
         address: {

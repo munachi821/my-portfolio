@@ -180,7 +180,7 @@ export default function ContactSection() {
         </div>
         <div className="flex items-center gap-6 text-white! font-google_sans text-sm font-medium">
           <Link
-            href="https://ng.linkedin.com/in/munachi-onyebuchi-90b6a12a8"
+            href="https://www.linkedin.com/in/munachi-onyebuchi/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-white! hover:text-sky-surge/80! flex items-center justify-center"
