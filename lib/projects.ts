@@ -34,12 +34,15 @@ import tabletap_screenshot_9 from "@/assets/tabletap/tabletap_screenshot_9.png";
 import tabletap_screenshot_10 from "@/assets/tabletap/tabletap_screenshot_10.png";
 import agrotrack_logo from "@/assets/agrotrack/agrotrack_logo.png";
 import unsaid_logo from "@/assets/unsaid/theunsaid_logo.png";
+import adihills_logo from "@/assets/adihills/Adhill_logo.png";
+import adihills_screenshot from "@/assets/adihills/Screenshot 2026-09-16 101951.png";
 import {
   ReactIcon,
   TailwindCssIcon,
   TypescriptIcon,
   NextJsIcon,
   SupabaseIcon,
+  Html5Icon,
 } from "@/components/svg";
 import { StaticImageData } from "next/image";
 
@@ -238,6 +241,33 @@ export const projects: Project[] = [
       unsaid_screenshot_4,
       unsaid_screenshot_5,
     ],
+    myTooling: ["React", "Tailwind CSS"],
+    fullStack: ["Coming soon"],
+  },
+  {
+    title: "Adihills",
+    meta: "Client Project · Freelancing",
+    description:
+      "Adihills is a digital storefront and portfolio for a professional printing service based in Enugu, delivering high-quality flex banners, posters, and event backdrops for brands, businesses, and personal projects.",
+    image: adihills_screenshot,
+    logo: adihills_logo,
+    icons: [Html5Icon, TailwindCssIcon],
+    link: "https://adihills.com",
+    featured: false,
+    slug: "adihills",
+    overview:
+      "Adihills is a digital storefront and portfolio for a professional printing service based in Enugu, delivering high-quality flex banners, posters, and event backdrops for brands, businesses, and personal projects. The platform serves to highlight their fast, 24-hour turnaround and includes:\n\n• Core Services Showcase: A comprehensive catalog of printing solutions, including corporate branding, custom stickers, business cards, and decals.\n• Categorized Portfolio Gallery: An interactive visual feed displaying successful print campaigns across political, corporate, educational, and event sectors.\n• Trust & Social Proof: Sections dedicated to highlighting 500+ completed projects, a 99% client satisfaction rate, and testimonials from high-profile state officials.",
+    myRole:
+      "I developed the landing page and digital portfolio to establish Adihills' online presence. Key contributions included:\n\n• Responsive Portfolio Pipeline: Built a categorized project showcase allowing users to seamlessly filter between Event, Corporate, Political, and Retail print jobs.\n• Conversion & Contact Integration: Integrated quick-access 'Request a Quote' endpoints and direct WhatsApp messaging channels to streamline customer inquiries and orders.\n• Localized Navigation: Embedded interactive maps, location details (Ogui Rd, Enugu), and business hours to drive local foot traffic and consultations.",
+    challenges:
+      "• Visual Asset Delivery: Showcasing high-quality, large-format print designs (like political campaign billboards and vehicle branding) required heavy image assets. I had to optimize the image loading pipeline to ensure fast rendering of the extensive portfolio without compromising visual fidelity.\n• Localized User Journey: Balancing a premium digital aesthetic with accessible, immediate contact methods (direct mobile numbers, WhatsApp buttons, and physical directions) tailored for the local Enugu market.",
+    deliverables: [
+      "Service Showcase Landing Page",
+      "Categorized Project Portfolio",
+      "Quote Request Pipeline",
+      "Local Business Map Integration",
+    ],
+    gallery: [adihills_screenshot],
     myTooling: ["React", "Tailwind CSS"],
     fullStack: ["Coming soon"],
   },

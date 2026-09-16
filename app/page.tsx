@@ -14,7 +14,7 @@ import VariableFontCursorProximity from "@/components/uilayouts/text-weight";
 import myPhoto from "@/assets/myphoto.webp";
 
 export default function Home() {
-  const my_works = projects;
+  const my_works = projects.filter((project) => project.featured);
   return (
     <ReactLenis root>
       <main>
