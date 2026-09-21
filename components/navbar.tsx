@@ -240,8 +240,8 @@ const Navbar = () => {
               <NavItem
                 icon={DocText}
                 label="Resume"
-                href="/Munachi_Onyebuchi_Bright_Resume.pdf"
-                download="Munachi_Onyebuchi_Resume.pdf"
+                href="/Munachi_Onyebuchi_Bright_Frontend_Developer_Resume.pdf"
+                download="Munachi_Onyebuchi_Bright_Frontend_Developer_Resume.pdf"
                 isDark={isOverDark}
               />
             </ul>
