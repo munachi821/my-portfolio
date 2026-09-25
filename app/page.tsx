@@ -16,51 +16,25 @@ import myPhoto from "@/assets/myphoto.webp";
 export default function Home() {
   const my_works = projects.filter((project) => project.featured);
   return (
-    <ReactLenis root>
+    <ReactLenis root options={{ syncTouch: false, touchMultiplier: 1 }}>
       <main>
         <section
           id="home"
           className="pt-20 md:pt-15 min-h-[75vh] md:min-h-0 md:h-fit md:pb-20"
         >
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={{
-              hidden: { opacity: 0 },
-              visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
-            }}
-          >
+          <div>
             {/* my image */}
-            {/* Uncomment when photo is ready */}
-            <motion.div
-              variants={{
-                hidden: { opacity: 0, y: 30 },
-                visible: {
-                  opacity: 1,
-                  y: 0,
-                  transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
-                },
-              }}
-              className="w-40 h-40 md:w-60 md:h-60 rounded-4xl overflow-hidden bg-black"
-            >
+            <div className="w-40 h-40 md:w-60 md:h-60 rounded-4xl overflow-hidden bg-black">
               <Image
                 src={myPhoto}
                 alt="Munachi Onyebuchi - Frontend Developer in Enugu, Nigeria"
-                loading="eager"
+                priority
+                sizes="(max-width: 768px) 160px, 240px"
+                className="w-full h-full object-cover"
               />
-            </motion.div>
+            </div>
 
-            <motion.div
-              variants={{
-                hidden: { opacity: 0, y: 30 },
-                visible: {
-                  opacity: 1,
-                  y: 0,
-                  transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
-                },
-              }}
-              className="mt-10 font-google_sans"
-            >
+            <div className="mt-10 font-google_sans">
               <h1 className="text-3xl md:text-4xl font-bold">
                 <span className="flex items-end">
                   <WordRotate
@@ -77,19 +51,9 @@ export default function Home() {
                 I build fast, clean interfaces for SaaS and fintech products —
                 crafted with care, shipped with confidence.
               </p>
-            </motion.div>
+            </div>
 
-            <motion.div
-              variants={{
-                hidden: { opacity: 0, y: 30 },
-                visible: {
-                  opacity: 1,
-                  y: 0,
-                  transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
-                },
-              }}
-              className="mt-8 font-google_sans flex flex-row items-center gap-4 md:gap-6"
-            >
+            <div className="mt-8 font-google_sans flex flex-row items-center gap-4 md:gap-6">
               <Link href={"Mailto:munaonye4@gmail.com"}>
                 <RippleButton />
               </Link>
@@ -132,8 +96,8 @@ export default function Home() {
                   </div>
                 </Link>
               </motion.div>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </section>
         <section id="about" className="my-20 md:my-40">
           <motion.div
