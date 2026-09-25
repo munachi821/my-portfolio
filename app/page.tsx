@@ -29,6 +29,7 @@ export default function Home() {
                 src={myPhoto}
                 alt="Munachi Onyebuchi - Frontend Developer in Enugu, Nigeria"
                 priority
+                fetchPriority="high"
                 sizes="(max-width: 768px) 160px, 240px"
                 className="w-full h-full object-cover"
               />
@@ -148,6 +149,7 @@ export default function Home() {
                     <Image
                       src={campusPadi_logo}
                       width={22}
+                      height={22}
                       alt="CampusPadi platform logo"
                       className="shrink-0 rounded-sm"
                     />
@@ -279,8 +281,7 @@ export default function Home() {
                     <Image
                       src={project.image}
                       alt={`${project.title} - ${project.meta} interface screenshot`}
-                      sizes="(max-width: 768px) 100vw, 960px"
-                      priority={idx === 0}
+                      sizes="(max-width: 768px) calc(100vw - 40px), 960px"
                       className="w-full h-auto object-cover rounded-lg border border-khaki-beige/10"
                     />
                   </div>
@@ -310,6 +311,8 @@ export default function Home() {
                         <Image
                           src={project.logo}
                           alt={`${project.title} logo`}
+                          width={48}
+                          height={48}
                           className="h-10 lg:h-12 w-auto object-contain drop-shadow-sm shrink-0"
                         />
                       )}
