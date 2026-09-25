@@ -51,96 +51,111 @@ export default function VariableFontCursorProximity(props: Props) {
   );
 
   const isStatic = useIsStaticRenderer();
-
-  // Self-contained: the component IS the container. Distance is
-  // measured relative to this wrapper, not an external ref.
   const containerRef = useRef<HTMLDivElement>(null);
-
-  // Refs to each rendered letter span, indexed in document order
-  // matching the flat `letters` array below. The rAF loop mutates
-  // each element's inline `fontVariationSettings` directly.
   const letterRefs = useRef<Array<HTMLSpanElement | null>>([]);
-
-  // Per-letter current interpolation factor (0 = rest, 1 = full morph).
-  // Eased toward the proximity target each frame so the hover effect
-  // ramps in/out at the speed set by the Transition control instead of
-  // snapping instantly.
   const letterFactorsRef = useRef<number[]>([]);
-
-  // Timestamp of the previous frame, for a robust frame delta (don't rely
-  // on the rAF callback's delta arg, which can be absent).
   const lastFrameRef = useRef(0);
-
-  // Mouse position relative to the container's top-left, updated on
-  // every mousemove / touchmove. Stored in a ref so updates don't
-  // trigger re-renders — only the rAF loop reads it.
   const mousePositionRef = useRef({ x: -99999, y: -99999 });
+  const letterCentersRef = useRef<Array<{ cx: number; cy: number }>>([]);
+  const [isInView, setIsInView] = React.useState(false);
+  const isPointerFine = useRef(false);
+  const isDirtyRef = useRef(false);
+
+  // Measure letter centers relative to container once (or on resize)
+  const measureCenters = React.useCallback(() => {
+    const container = containerRef.current;
+    if (!container) return;
+    const containerRect = container.getBoundingClientRect();
+    letterCentersRef.current = letterRefs.current.map((el) => {
+      if (!el) return { cx: 0, cy: 0 };
+      const r = el.getBoundingClientRect();
+      return {
+        cx: r.left + r.width / 2 - containerRect.left,
+        cy: r.top + r.height / 2 - containerRect.top,
+      };
+    });
+  }, []);
 
   useEffect(() => {
     if (isStatic) return;
 
+    isPointerFine.current = window.matchMedia("(pointer: fine)").matches;
+    if (!isPointerFine.current) return;
+
+    const el = containerRef.current;
+    if (!el) return;
+
+    // Observe when in view so we don't calculate off-screen
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+        if (entry.isIntersecting) {
+          measureCenters();
+        }
+      },
+      { rootMargin: "100px" }
+    );
+    observer.observe(el);
+
     const updatePosition = (clientX: number, clientY: number) => {
-      const el = containerRef.current;
-      if (!el) return;
-      const rect = el.getBoundingClientRect();
+      const currentContainer = containerRef.current;
+      if (!currentContainer) return;
+      const rect = currentContainer.getBoundingClientRect();
       mousePositionRef.current = {
         x: clientX - rect.left,
         y: clientY - rect.top,
       };
+      isDirtyRef.current = true;
     };
 
     const handleMouseMove = (ev: MouseEvent) =>
       updatePosition(ev.clientX, ev.clientY);
-    const handleTouchMove = (ev: TouchEvent) => {
-      if (ev.touches.length === 0) return;
-      updatePosition(ev.touches[0].clientX, ev.touches[0].clientY);
+
+    const handleResize = () => {
+      measureCenters();
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
-    window.addEventListener("touchmove", handleTouchMove);
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    window.addEventListener("resize", handleResize, { passive: true });
+
     return () => {
+      observer.disconnect();
       window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("touchmove", handleTouchMove);
+      window.removeEventListener("resize", handleResize);
     };
-  }, [isStatic]);
+  }, [isStatic, measureCenters]);
 
   // Resting / hover wght values as variation-settings strings.
   const fromSettings = `'wght' ${fromWeight}`;
 
-  // Per-frame: walk every letter, compute distance from its center to the
-  // cursor → a linear proximity target, ease the stored factor toward it at
-  // the transition speed (both ramp-in and ramp-out), and stamp the
-  // interpolated `wght` directly onto the DOM node.
+  // Per-frame: only runs if component is in view and on a device with a fine pointer (desktop)
   useAnimationFrame((now: number) => {
-    if (isStatic) return;
-    const container = containerRef.current;
-    if (!container) return;
-    const containerRect = container.getBoundingClientRect();
+    if (isStatic || !isInView || !isPointerFine.current) return;
+    if (!isDirtyRef.current) return;
+
     const mx = mousePositionRef.current.x;
     const my = mousePositionRef.current.y;
 
-    // Frame delta in seconds (clamped so a stalled tab can't jump).
     const prevT = lastFrameRef.current || now;
     const dtSec = Math.min(0.1, Math.max(0, (now - prevT) / 1000));
     lastFrameRef.current = now;
 
-    // Transition duration → exponential smoothing rate. Larger duration
-    // = slower, softer ramp; ~0 = effectively instant.
     const tau = Math.max(0.016, transition?.duration ?? 0.3);
     const a = 1 - Math.exp(-dtSec / tau);
+
+    let hasNonZeroChange = false;
 
     for (let i = 0; i < letterRefs.current.length; i++) {
       const letterEl = letterRefs.current[i];
       if (!letterEl) continue;
-      const rect = letterEl.getBoundingClientRect();
-      const cx = rect.left + rect.width / 2 - containerRect.left;
-      const cy = rect.top + rect.height / 2 - containerRect.top;
-      const dx = mx - cx;
-      const dy = my - cy;
+
+      const center = letterCentersRef.current[i];
+      if (!center) continue;
+
+      const dx = mx - center.cx;
+      const dy = my - center.cy;
       const dist = Math.sqrt(dx * dx + dy * dy);
 
-      // Linear proximity target (1 at cursor, 0 at/beyond reach), then
-      // ease the stored factor toward it at the transition speed.
       const target = Math.min(Math.max(1 - dist / reach, 0), 1);
       const prev = letterFactorsRef.current[i] ?? 0;
       const f = prev + (target - prev) * a;
@@ -153,9 +168,14 @@ export default function VariableFontCursorProximity(props: Props) {
         continue;
       }
 
-      // Interpolate wght both ways: from → to as the cursor nears.
+      hasNonZeroChange = true;
       const w = Math.round(fromWeight + (toWeight - fromWeight) * f);
       letterEl.style.fontVariationSettings = `'wght' ${w}`;
+    }
+
+    // Stop updating if all letters reached resting state and cursor is away
+    if (!hasNonZeroChange && (mx < -1000 || my < -1000)) {
+      isDirtyRef.current = false;
     }
   });
 
