@@ -5,8 +5,10 @@ import "./globals.css";
 import Navbar from "@/components/navbar";
 
 const googleSans = localFont({
-  src: "./fonts/GoogleSans.ttf",
+  src: "./fonts/GoogleSans-subset.woff2",
   variable: "--font-google-sans",
+  display: "swap",
+  preload: true,
 });
 
 const fraunces = Fraunces({
@@ -192,7 +194,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${googleSans.variable} ${fraunces.variable} antialiased min-h-full flex flex-col max-w-5xl mx-auto px-5 md:px-8 lg:px-0 bg-soft-linen text-gunmetal relative overflow-x-hidden selection:bg-sky-surge/30 cursor-none`}
+        className={`${googleSans.variable} ${fraunces.variable} antialiased min-h-full flex flex-col max-w-5xl mx-auto px-5 md:px-8 lg:px-0 bg-soft-linen text-gunmetal relative overflow-x-hidden selection:bg-sky-surge/30`}
       >
         <div className="block">
           <CustomCursor />
