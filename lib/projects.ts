@@ -1,6 +1,6 @@
 import campusPadi_logo from "@/assets/campuspadi/campuspadi_logo.png";
-import campuspadi_screenshot from "@/assets/campuspadi/campuspadi-dashboard-screenshot.png";
-import campus_screenshot_1 from "@/assets/campuspadi/campus_screenshot_1.png";
+import campuspadi_screenshot from "@/assets/campuspadi/campus_screenshot_1.png";
+import campus_screenshot_1 from "@/assets/campuspadi/campuspadi-dashboard-screenshot.png";
 import campus_screenshot_2 from "@/assets/campuspadi/campus_screenshot_2.png";
 import campus_screenshot_3 from "@/assets/campuspadi/campus_screenshot_3.png";
 import campus_screenshot_4 from "@/assets/campuspadi/campus_screenshot_4.png";
@@ -21,7 +21,7 @@ import unsaid_screenshot_2 from "@/assets/unsaid/unsaid_screenshot_2.png";
 import unsaid_screenshot_3 from "@/assets/unsaid/unsaid_screenshot_3.png";
 import unsaid_screenshot_4 from "@/assets/unsaid/unsaid_screenshot_4.png";
 import unsaid_screenshot_5 from "@/assets/unsaid/unsaid_screenshot_5.png";
-import tabletap_screenshot from "@/assets/tabletap/tabletap-order-screenshot.png";
+import tabletap_screenshot_0 from "@/assets/tabletap/tabletap_screenshot_0.png";
 import tabletap_screenshot_1 from "@/assets/tabletap/tabletap_screenshot_1.png";
 import tabletap_screenshot_2 from "@/assets/tabletap/tabletap_screenshot_2.png";
 import tabletap_screenshot_3 from "@/assets/tabletap/tabletap_screenshot_3.png";
@@ -162,7 +162,7 @@ export const projects: Project[] = [
     meta: "Fullstack · SaaS · B2B",
     description:
       "A multi-tenant restaurant ordering and Kitchen Display System built on Supabase. One unified codebase reliably serves isolated environments for multiple restaurants.",
-    image: tabletap_screenshot,
+    image: tabletap_screenshot_0,
     icons: [NextJsIcon, SupabaseIcon, TailwindCssIcon],
     link: "https://table-tap-cyan.vercel.app/",
     featured: true,
@@ -180,7 +180,7 @@ export const projects: Project[] = [
       "Real-time Order Streams",
     ],
     gallery: [
-      tabletap_screenshot,
+      tabletap_screenshot_0,
       tabletap_screenshot_1,
       tabletap_screenshot_2,
       tabletap_screenshot_3,
