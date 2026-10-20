@@ -36,6 +36,13 @@ import agrotrack_logo from "@/assets/agrotrack/agrotrack_logo.png";
 import unsaid_logo from "@/assets/unsaid/theunsaid_logo.png";
 import adihills_logo from "@/assets/adihills/Adhill_logo.png";
 import adihills_screenshot from "@/assets/adihills/Screenshot 2026-09-16 101951.png";
+import above_printing_logo from "@/assets/above_printing/abovelogo.webp";
+import above_printing_screenshot from "@/assets/above_printing/Screenshot 2026-10-20 131104.png";
+import above_printing_screenshot_1 from "@/assets/above_printing/Screenshot 2026-10-20 144227.png";
+import above_printing_screenshot_2 from "@/assets/above_printing/Screenshot 2026-10-20 144301.png";
+import above_printing_screenshot_3 from "@/assets/above_printing/Screenshot 2026-10-20 144316.png";
+import above_printing_screenshot_4 from "@/assets/above_printing/Screenshot 2026-10-20 144332.png";
+import above_printing_screenshot_5 from "@/assets/above_printing/Screenshot 2026-10-20 144351.png";
 import {
   ReactIcon,
   TailwindCssIcon,
@@ -270,5 +277,53 @@ export const projects: Project[] = [
     gallery: [adihills_screenshot],
     myTooling: ["React", "Tailwind CSS"],
     fullStack: ["Coming soon"],
+  },
+  {
+    title: "Above Printing & Training Services",
+    meta: "Frontend Developer & SEO Engineer",
+    description:
+      "A fast, modern web platform and local search system built for an established commercial printing press in Enugu, Nigeria. Designed to showcase their print services, display real workshop projects, and make ordering via WhatsApp effortless.",
+    image: above_printing_screenshot,
+    logo: above_printing_logo,
+    icons: [NextJsIcon, ReactIcon, TailwindCssIcon, TypescriptIcon],
+    link: "https://aboveprintingandtraining.com",
+    featured: false,
+    slug: "above-printing-and-training-services",
+    overview:
+      "Above Printing and Training Services is an established industrial printing press in Asata, Enugu, with decades of experience in commercial printing and book production. I built their modern web platform to help them expand beyond offline word-of-mouth, making it easy for businesses, authors, and organizations across South-East Nigeria to discover their work and order prints online:\n\n• Clear Service Catalog: Detailed breakdowns of 9 major commercial print services — from book publishing and calendars to packaging, banners, and corporate branding.\n• Direct WhatsApp Ordering: Seamless quote requests connecting potential customers directly to the printing desk with pre-filled order details.\n• Real Project Showcase: High-quality photo galleries featuring completed client jobs and workshop machinery, providing solid proof of print quality.\n• Local Google Visibility: Built-in local SEO and business data so anyone searching for printing presses in Enugu can quickly find Above Printing at the top of search results.",
+    myRole:
+      "I designed and engineered the entire web platform from concept to launch, handling frontend development, user experience, local SEO, and production deployment:\n\n• Fast & Responsive Design: Built a clean, mobile-first website using Next.js and Tailwind CSS that matches the brand's identity and loads smoothly on any device.\n• Search Engine Optimization (SEO): Configured local business listings, Google-friendly metadata, and sitemaps to ensure strong ranking for local search queries.\n• Smooth User Experience: Integrated subtle animations and easy navigation, making it simple for visitors to browse services, check specifications, and get in touch.\n• Media Optimization: Handled and optimized workshop photography and sample images so pages open quickly, even on slower cellular networks.",
+    challenges:
+      "• Keeping Pages Fast with Heavy Photography: A printing portfolio requires lots of visual proof, but large photo files can slow down mobile loading. I compressed and optimized all images into lightweight WebP formats with smart loading, keeping photos sharp without sacrificing speed.\n• Simplifying How Customers Order: Many clients prefer a quick conversation over filling out long enquiry forms. I streamlined the quote process into a one-tap WhatsApp link that automatically tags the exact service they were viewing, making customer consultations much faster.",
+    deliverables: [
+      "Modern Commercial Website & Service Catalog",
+      "Local Google Search & SEO Setup",
+      "Print Portfolio & Workshop Showcase",
+      "One-Tap WhatsApp Quote & Inquiry System",
+      "Fast, Mobile-Optimized Performance",
+    ],
+    gallery: [
+      above_printing_screenshot,
+      above_printing_screenshot_1,
+      above_printing_screenshot_2,
+      above_printing_screenshot_3,
+      above_printing_screenshot_4,
+      above_printing_screenshot_5,
+    ],
+    myTooling: [
+      "Next.js 16 (App Router)",
+      "React 19",
+      "TypeScript",
+      "Tailwind CSS v4",
+      "Framer Motion",
+      "Phosphor Icons",
+    ],
+    fullStack: [
+      "Next.js 16",
+      "React 19",
+      "TypeScript",
+      "Tailwind CSS v4",
+      "Framer Motion",
+    ],
   },
 ];
