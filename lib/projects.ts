@@ -50,6 +50,10 @@ import {
   NextJsIcon,
   SupabaseIcon,
   Html5Icon,
+  NodeJsIcon,
+  PostgresIcon,
+  ExpressIcon,
+  NeonIcon,
 } from "@/components/svg";
 import { StaticImageData } from "next/image";
 
@@ -218,39 +222,56 @@ export const projects: Project[] = [
     ],
   },
   {
-    title: "Unsaid",
-    meta: "Fullstack · Social · Anonymity",
-    description:
-      "An anonymous social platform where users can securely share their unspoken thoughts. Engineered to handle both text and image-based confessions in a completely untraceable, minimalist environment.",
-    image: unsaid_screenshot,
-    logo: unsaid_logo,
-    icons: [NextJsIcon, SupabaseIcon, TailwindCssIcon],
-    link: "https://the-unsaid.vercel.app/",
-    featured: true,
-    slug: "unsaid",
-    overview:
-      "Unsaid is a minimalist, anonymous social sharing space designed for raw self-expression and confessions. The platform operates on absolute anonymity and responsive micro-interactions:\n\n• Public Confessions Feed: A completely untraceable chronological feed featuring anonymized textual and visual cards.\n• Minimalist Post Creator: An interface where users submit confessions alongside optional media assets without accounts or IP logging.\n• Interactive Reactions: Engagement loops allowing users to interact with posts using pre-defined anonymous emotions.",
-    myRole:
-      "I built the entire web app and engineered the data-anonymization architecture. Key contributions included:\n\n• Absolute Privacy Pipeline: Decoupled post creations from user-identifiable data, stripping IP addresses, request headers, and metadata at the api endpoint before writing records.\n• Optimized Media Store: Integrated client-side WebP compression and Supabase storage to process, optimize, and host confessions images under a 1MB limit for quick page load times.\n• Dark Mode Aesthetic: Crafted a high-contrast dark theme with Framer Motion transitions for smooth feed interactions and content loading.",
-    challenges:
-      "• Preventing Identity Leakage: Traditional relational schemas risk connecting posts to accounts through trace logs. I restructured the database to store user sessions in ephemeral localStorage tokens and separated authentication states from post records entirely.\n• Image Load Performance: Loading raw image uploads on infinite-scroll confession feeds caused high layout shift and network latency. I resolved this by pre-compressing images to next-gen WebP formats on the client and serving them using Next.js Image optimization and BlurHash placeholders.",
-    deliverables: [
-      "Confession Submission Engine",
-      "Image Upload Hosting",
-      "Minimalist Feed UI",
-      "Data Privacy Hardening",
-    ],
-    gallery: [
-      unsaid_screenshot,
-      unsaid_screenshot_1,
-      unsaid_screenshot_2,
-      unsaid_screenshot_3,
-      unsaid_screenshot_4,
-      unsaid_screenshot_5,
-    ],
-    myTooling: ["React", "Tailwind CSS"],
-    fullStack: ["Coming soon"],
-  },
+  title: "The Unsaid",
+  meta: "Fullstack · Social · Anonymity",
+  description:
+    "An anonymous messaging platform where users share a personal link to receive untraceable text and image messages in a private vault. Built end-to-end as my first full-stack project, spanning both the React frontend and a custom REST API backed by PostgreSQL.",
+  image: unsaid_screenshot,
+  logo: unsaid_logo,
+  icons: [ReactIcon, NodeJsIcon, PostgresIcon, ExpressIcon, NeonIcon, TailwindCssIcon],
+  link: "https://the-unsaid.vercel.app/",
+  featured: true,
+  slug: "unsaid",
+  overview:
+    "The Unsaid is a web-first anonymous messaging platform built around personal shareable links. Instead of a public feed, every user gets a private inbox vault to receive honest, anonymous feedback, questions, and media without requiring senders to create an account:\n\n• Personal Shareable Links: Each user receives a unique /send/:username page where anyone can send anonymous text messages, images, or both with zero sender login required.\n• Private Message Vault: A responsive dark-mode dashboard featuring live vault statistics, type filters (All, Text, Images), archiving, deletion, and an admin panel for moderation.\n• Story Card Sharing: Users can download or share received messages — including attached images — directly as formatted story cards for social media.",
+  myRole:
+    "This was my first full-stack project, where I designed and built both the React frontend and the custom backend API from scratch:\n\n• End-to-End Authentication & Security: Built email/password registration with 24-hour email verification tokens, password reset flows, account ban enforcement, rate limiting, and Google Sign-In/Sign-Up verified against the backend using HTTP-only JWT cookies and Bearer tokens.\n• Data-Fetching & Session Architecture: Powered the client with TanStack Query and a centralized Axios interceptor handling token attachment, automatic 401 session-expiry redirects, and clean cache invalidation.\n• Image-Ready Story Export & Dark UI: Crafted a unified dark interface with Tailwind CSS v4 and client-side canvas rendering so users can export and share anonymous messages with their images intact.",
+  challenges:
+    "• Coordinating Auth State Across Flows: Moving from immediate login-on-signup to mandatory email verification, Google OAuth account linking, and strict 401/403 handling taught me how to keep backend status codes and Axios interceptors aligned — including preventing failed auth attempts from triggering false session-expiry logouts and guarding single-use verification tokens against React StrictMode double-mounts.\n• Reliable Image Rendering on Story Exports: Exporting messages containing remote images initially stripped the visuals due to cross-origin canvas tainting. Resolving CORS and image-loading behavior ensured downloaded and shared story cards preserve both text and media cleanly.",
+  deliverables: [
+    "Full-Stack Auth & Email Verification",
+    "Personal Anonymous Message Links",
+    "Private Vault & Story Card Export",
+    "Custom REST API & PostgreSQL Schema",
+  ],
+  gallery: [
+    unsaid_screenshot,
+    unsaid_screenshot_1,
+    unsaid_screenshot_2,
+    unsaid_screenshot_3,
+    unsaid_screenshot_4,
+    unsaid_screenshot_5,
+  ],
+  myTooling: [
+    "React",
+    "Vite",
+    "Tailwind CSS",
+    "TanStack Query",
+    "React Router",
+    "Axios",
+    "Google Identity Services",
+  ],
+  fullStack: [
+    "React",
+    "Tailwind CSS",
+    "TanStack Query",
+    "Node.js",
+    "Express",
+    "PostgreSQL",
+    "JWT",
+    "Vercel",
+  ],
+},
   {
     title: "Adihills",
     meta: "Client Project · Freelancing",
