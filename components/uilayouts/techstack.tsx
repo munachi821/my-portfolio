@@ -15,6 +15,10 @@ import {
   SupabaseIcon,
   TypescriptIcon,
   VercelIcon,
+  ExpressIcon,
+  NeonIcon,
+  NodeJsIcon,
+  PostgresIcon,
 } from "@/components/svg";
 
 const techStack = [
@@ -31,6 +35,10 @@ const techStack = [
   { icon: RailwayIcon, name: "Railway" },
   { icon: TypescriptIcon, name: "TypeScript" },
   { icon: GithubIcon, name: "Github" },
+  { icon: NodeJsIcon, name: "Node.js" },
+  { icon: ExpressIcon, name: "Express" },
+  { icon: PostgresIcon, name: "PostgreSQL" },
+  { icon: NeonIcon, name: "Neon" },
 ];
 
 function TechStack() {
