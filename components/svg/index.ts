@@ -14,3 +14,7 @@ export { default as SupabaseIcon } from "./supabase.svg";
 export { default as TypescriptIcon } from "./typescript.svg";
 export { default as VercelIcon } from "./vercel.svg";
 export { default as LinkedinIcon } from "./linkedin.svg";
+export { default as ExpressIcon } from "./express.svg";
+export { default as NeonIcon } from "./neon.svg";
+export { default as NodeJsIcon } from "./nodedotjs.svg";
+export { default as PostgresIcon } from "./postgresql.svg";
